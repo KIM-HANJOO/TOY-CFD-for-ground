@@ -1,6 +1,6 @@
 # 4-4-4-3D-Heat-transfer-model
 
-### simple * 4-4-4 size 3D Heat-transfer model * 
+simple ** 4-4-4 size 3D Heat-transfer model **
 to upgrade 2D heat-transfer at ground to 3D heat-transfer
 unsteady 2D heat-transfer room model
 

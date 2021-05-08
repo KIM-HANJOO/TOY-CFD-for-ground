@@ -1,6 +1,5 @@
 # 6-6-6-3D-Heat-transfer-model
 
-***
 
 simple **6-6-6 size 3D Heat-transfer model**
 
@@ -27,6 +26,10 @@ Coded for 'Building Energy Modeling and Analysis' course of 'School of Civil, En
 > 'room_input(2)' contains the informations of the room we are modeling
 > 'TMY3' contains the weather data of a whole year (from 1/1 to 12/31)
 
-***
+
 
 ### Concept 
+
+1. mesh 12m * 12m * 12m sized ground with 2m interval
+2. center of the cubes sprung by meshing the ground (6 * 6 * 6) represents 'nodes'
+3. every nodes( = cubes) exchange heat with 6 face-to-face attached nodes ( = cubes)

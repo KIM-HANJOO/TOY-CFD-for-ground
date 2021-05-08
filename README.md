@@ -17,7 +17,7 @@ Coded for 'Building Energy Modeling and Analysis' course of 'School of Civil, En
 
 ### read.me
 
-0. MATLAB required
+0. MATLAB is required
 1. download and place the files in **one file**
 2. run 'set_up.mat'
 3. run 'Heat_transfer_3Dground_simulation.mat'

@@ -1,6 +1,6 @@
-# 4-4-4-3D-Heat-transfer-model
+# 6-6-6-3D-Heat-transfer-model
 
-simple **4-4-4 size 3D Heat-transfer model**
+simple **6-6-6 size 3D Heat-transfer model**
 
 2D heat-transfer **at ground** to 3D heat-transfer
 
@@ -9,9 +9,5 @@ unsteady 2D heat-transfer room model
 <plotting of the code>
 
 
-
-![4-4-4](https://user-images.githubusercontent.com/82522118/117492126-21b9ea00-afac-11eb-90e3-545500d3b990.jpg)
-(simulated with unrealistic specific-heat and density, to monitor ground's heat-behavior. 
-
-spcific-heat * density at surface node = 100, specific heat * density at ground(inside) node = 1)
-
+![plott](https://user-images.githubusercontent.com/82522118/117552847-dcb7b580-b088-11eb-83df-c9eabe4a2556.png)
+Coded for 'Building Energy Modeling and Analysis' course of 'School of Civil, Environmenta and Architectural Engineering, Korea.UNIV'

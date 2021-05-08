@@ -36,3 +36,8 @@ _Coded for 'Building Energy Modeling and Analysis' course of 'School of Civil, E
 2.  cubes will be made by meshing the ground (6 * 6 * 6)
 3.  center of the cubes represents 'nodes'
 4.  every nodes(= cubes) exchange heat with 6 face-to-face attached nodes (= cubes)
+
+
+
+### Plus
+In simulating this unsteady heat-transfer model, most problems appeared on 'Thermal mass'.  Ground's thermal mass is too big that if T0 of the nodes were set far from their normal temperature range, the simulation should need more than a year to finish warmup. Mesh wasn't finely set enough, so boundary condition nodes effected too much on other non-boundary nodes, and because the thermal mass of the ground nodes are too big, the effect of boundary condition nodes began worse.

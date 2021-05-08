@@ -9,7 +9,7 @@ with unsteady 2D heat-transfer room model
 
 
 ![plott](https://user-images.githubusercontent.com/82522118/117552847-dcb7b580-b088-11eb-83df-c9eabe4a2556.png)
-Coded for 'Building Energy Modeling and Analysis' course of 'School of Civil, Environmenta and Architectural Engineering, Korea .UNIV'
+_Coded for 'Building Energy Modeling and Analysis' course of 'School of Civil, Environmenta and Architectural Engineering, Korea .UNIV'_
 
 ***
 

@@ -17,9 +17,9 @@ Coded for 'Building Energy Modeling and Analysis' course of 'School of Civil, En
 
 0. MATLAB is required
 1. download and place the files in **the same folder**
-2. run 'set_up.mat'
-3. run 'Heat_transfer_3Dground_simulation.mat'
-4. run 'Heat_transfer_3Dground_plotter.mat'
+2. run **'set_up.mat'**
+3. run **'Heat_transfer_3Dground_simulation.mat'**
+4. run **'Heat_transfer_3Dground_plotter.mat'**
 
 > 'room_input(2)' contains the informations of the room we are modeling  
 > 'TMY3' contains the weather data of a whole year (from 1/1 to 12/31)

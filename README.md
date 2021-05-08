@@ -25,7 +25,7 @@ _Coded for 'Building Energy Modeling and Analysis' course of 'School of Civil, E
 
 
 > 'room_input(2)' contains the informations of the room we are modeling  
-> 'TMY3' contains the weather data of a whole year (from 1/1 to 12/31)
+> 'TMY3' contains the weather data of a whole year (from January 1st to December 31st)
 
 
 

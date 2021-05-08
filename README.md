@@ -1,11 +1,9 @@
 # 6-6-6-3D-Heat-transfer-model
 
 
-simple **6-6-6 size 3D Heat-transfer model**
+simple **6-6-6 size 3D ground Heat-transfer model**
 
-2D heat-transfer **at ground** to 3D heat-transfer
-
-unsteady 2D heat-transfer room model
+with unsteady 2D heat-transfer room model
 
 <plotting of the code>
 

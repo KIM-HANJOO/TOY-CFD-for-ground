@@ -41,7 +41,7 @@ _Coded for 'Building Energy Modeling and Analysis' course of 'Civil, Environment
 
 ### Plus
 
-In simulating this unsteady heat-transfer model, most problems appeared were related to 'Thermal mass'.  Ground's thermal mass is too big that if T0 of the nodes were set far from their normal temperature range, the simulation should need more than a year to finish warmup(which is quite out of our weather data range). Also, meshing wasn't set finely enough, number of heat transfer times from boundary condition nodes to non-boundary nodes were not enough. In addition to this, because the thermal mass of the ground nodes are too big, the effect of boundary condition nodes began worse.
+In simulating this unsteady heat-transfer model, most problems appeared were related to **'Thermal mass'** and **'boundary conditions'**.  Ground's thermal mass is too big that if T0 of the nodes were set far from their normal temperature range, the simulation should need more than a year to finish warmup(which is quite out of our weather data range). Also, meshing wasn't set finely enough, number of heat transfer times from boundary condition nodes to non-boundary nodes were not enough. In addition to this, because the thermal mass of the ground nodes are too big, the effect of boundary condition nodes began worse.
 
 Therefore, more specific settings for **warmup** and **boundary conditions** are required for the huge-thermal mass nodes. In warming up season, **thermal mass needs to be adjusted lower enough** for ground nodes to easily find the normal temperature range, and **temperature of the boundary condition nodes should be updated every time interval** with other reasonable simulation results.
 

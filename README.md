@@ -34,10 +34,25 @@ _Coded for 'Building Energy Modeling and Analysis' course of 'Civil, Environment
 
 1.  mesh 12m * 12m * 12m sized ground with 2m interval
 2.  cubes will be made by meshing (6 * 6 * 6)
-3.  center of the cubes represents 'nodes'
+3.  center of every cubes underground represents 'nodes'
 4.  every nodes(= cubes) exchange heat with 6 face-to-face attached nodes (= cubes)
 
 
+### Key Assumptions
+
+1. The ground is made up of homogeneous soil and has the same property at any point, regardless of depth or location.
+
+2. Ignore the shade effect by the building and surroundings. Temperatures are the same at any point on the surface.
+
+3. Assume that underground temperature begins constant from the depth of 12 meters
+
+4. All cubes (=nodes) produced by meshing exchange heat solely through conduction, with six other cubes (=nodes) adjacent to the face.
+
+### issues
+
+The main purpose of heat transfer model is to predict indoor air temp under changing outdoor air temp. ODE starts to calculate from one boundary condition node to another, and the nodes that are at the path of the ODE will get the temperature difference through time as a result. So the result of simulation unconditionally depends on the temp of boundary conditions. As the number of boundary condition nodes is quite large, and thouse 116 boundary condtion nodes' temperature are fixed, result of the simulation should be sadly inaccurate. As it is hard to expect that there will be the data of cubes(newly defined by me), we have to simulate the boundary conditions' thermal behavior. What I suggest is to delete building part in the 3D heat transfer model, and simulate with only soil and surface nodes. With this simulation and fixed boundary condition temperature, we can get the temp difference through time and depth of the vertical nodes at the center of 12m * 12m * 12m space(in this case, (3, 3, z) nodes) as a result. Than re-input the temp data to the boundary condition nodes, depending on depth and updating through time intervals and re-simulate. The result of the vertical nodes at the cent, will converge to certain data. This data can be the temperature data of boundary conditionnodes.
+
+in 216 nodes additionally added, 116 nodes are boundary conditions. (boundary condition nodes / all nodes) are approximately near half. this ratio is pretty high, and because 
 
 ### Plus
 

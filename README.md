@@ -13,6 +13,15 @@ _Coded for 'Building Energy Modeling and Analysis' course of 'Civil, Environment
 
 ***
 
+### CAUTION
+This model can be only used on the 1D heat transfer room model. the information of the model is at below, 'room_input(2).xlsx' contains the information of the room model. In the room model, 18th node is the ground node, and cruely the heat exchange with the room(can be also said as the 1 storey bulding) and the ground are assumed as 1D heat transfer.
+So the model is designed to get rid of this inaccuracy appered by the 1D heat transfer of ground node. In the model, ground node of the existing room model is deleted, and instead 244 nodes (6*6*6 meshed ground and 28 additional surface nodes) are attached
+to the feet of the building. This model can be only used in this case of room model.
+
+(lecture 14. pp2)
+
+(room and box model in ppt)
+
 
 ### read.me
 
@@ -29,7 +38,7 @@ _Coded for 'Building Energy Modeling and Analysis' course of 'Civil, Environment
 
 
 
-### Concept 
+### CONCEPT
 
 
 1.  mesh 12m * 12m * 12m sized ground with 2m interval
@@ -38,7 +47,7 @@ _Coded for 'Building Energy Modeling and Analysis' course of 'Civil, Environment
 4.  every nodes(= cubes) exchange heat with 6 face-to-face attached nodes (= cubes)
 
 
-### Key Assumptions
+### KEY ASSUMPTIONS
 
 1. The ground is made up of homogeneous soil and has the same property at any point, regardless of depth or location.
 
@@ -48,7 +57,7 @@ _Coded for 'Building Energy Modeling and Analysis' course of 'Civil, Environment
 
 4. All cubes (=nodes) produced by meshing exchange heat solely through conduction, with six other cubes (=nodes) adjacent to the face.
 
-### issues
+### ISSUES
 
 The main purpose of heat transfer model is to predict indoor air temp under changing outdoor air temp. ODE starts to calculate from one boundary condition node to another, and the nodes that are at the path of the ODE will get the temperature difference through time as a result. **So the result of simulation unconditionally depends on the temp of boundary conditions.** In 216 nodes additionally added, 116 nodes are boundary conditions, so (boundary condition nodes / all nodes) are approximately near half. **As the number of boundary condition nodes is quite large, and thouse 116 boundary condtion nodes' temperature are fixed, result of the simulation should be sadly inaccurate.** As it is hard to expect that there will be the data of cubes(newly defined by me), we have to simulate the boundary conditions' thermal behavior. What I suggest is to delete building part in the 3D heat transfer model, and simulate with only soil and surface nodes. With this simulation and fixed boundary condition temperature, we can get the temp difference through time and depth of the vertical nodes at the center of 12m * 12m * 12m space(in this case, (3, 3, z) nodes) as a result. Than re-input the temp data to the boundary condition nodes, depending on depth and updating through time intervals and re-simulate. The result of the vertical nodes at the cent, will converge to certain data. This data can be the temperature data of boundary condition nodes. This 'updating simulated temp data to boundary condition nodes' can be one solution.
 
@@ -56,7 +65,26 @@ Also, some nodes' **huge thermal mass** can be a problem when running simulation
 
 These problems were not reflected to the codes. As the assumptions used are way too simple, the accuracy of the simulation is not guarangeed. More updates for the codes are needed.
 
+### COMPARE
 
+The image shows the temperature differnce with basic room model and 3D-added-room model.
+At every time interval, _Temperature of 3D-added-room model_ minus _Temperature of basic room model_ is plotted.
+
+![Tdiff](https://user-images.githubusercontent.com/82522118/117653559-80ab7900-b1cf-11eb-8b39-e303afb2b08b.jpg)
+
+
+### PLOT
+
+![temp at every 2 month](https://user-images.githubusercontent.com/82522118/117654106-45f61080-b1d0-11eb-9f91-4c930bf27c0d.jpg)
+
+the plots shows the result of temperature of the nodes on the x=3 plane (when we define one vertex at the bottom of the 6-6-6 space as origin), and 6 plots shows the result of the dates below.
+
+[ February, August ;
+  April,    October ;
+  June,     December ] 1st at noon.
+
+
+### PLUS
 
 +) initial 4-4-4 model with same method. Just enlarged the sclae and made 6-6-6 heat transfer model.
 

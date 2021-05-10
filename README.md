@@ -79,8 +79,8 @@ At every time interval, _Temperature of 3D-added-room model_ minus _Temperature 
 
 the plots shows the result of temperature of the nodes on the x=3 plane (when we define one vertex at the bottom of the 6-6-6 space as origin), and 6 plots shows the result of the dates below.
 
-[ February, August ;
-  April,    October ;
+[ February, August ;  
+  April,    October ;  
   June,     December ] 1st at noon.
 
 

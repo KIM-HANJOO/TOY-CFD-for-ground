@@ -8,7 +8,7 @@ with unsteady 2D heat-transfer room model
 <plotting of the code>
 
 
-![2_1_12 (3)](https://user-images.githubusercontent.com/82522118/117623559-e9cec480-b1ae-11eb-9b61-bc2c6f3df2a2.jpg)
+![미리보기용](https://user-images.githubusercontent.com/82522118/117624296-bb9db480-b1af-11eb-8973-7e2ba3383f19.png)
 _Coded for 'Building Energy Modeling and Analysis' course of 'Civil, Environmental and Architectural Engineering, Korea .UNIV'_
 
 ***

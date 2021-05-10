@@ -1,4 +1,4 @@
-# TOY CFD
+# TOY-CFD
 
 
 simple **6-6-6 size 3D ground Heat-transfer model**

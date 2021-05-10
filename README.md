@@ -66,7 +66,9 @@ Also, some nodes' **huge thermal mass** can be a problem when running simulation
 
 These problems were not reflected to the codes. As the assumptions used are way too simple, the accuracy of the simulation is not guarangeed. More updates for the codes are needed.
 
+
 ***
+
 
 ### COMPARE
 
@@ -86,6 +88,8 @@ At every time interval, _Temperature of 3D-added-room model_ minus _Temperature 
 
 the plots shows the result of temperature of the nodes on the x=3 plane(when we define one vertex at the bottom of the 6-6-6 space as origin).
 
+
+***
 
 
 ### PLUS

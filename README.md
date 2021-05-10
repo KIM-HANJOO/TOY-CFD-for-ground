@@ -22,6 +22,7 @@ to the feet of the building. This model can be only used in this case of room mo
 
 (room and box model in ppt)
 
+***
 
 ### read.me
 
@@ -64,6 +65,8 @@ The main purpose of heat transfer model is to predict indoor air temp under chan
 Also, some nodes' **huge thermal mass** can be a problem when running simulation model without warmup period. In the simulations, warmup should be the basic function of the simulation because during the time needed for the nodes to reach normal temperature range from T0, accuracy of the simulation is too low. If we design warmup method in the 3D heat transfer model, what should be the period needed for the warmup? Every nodes should have different time period to reach normal temp range from their initial temperature, and this time period mainly depends on their thermal mass. If thermal mass of the node is big, it would need more time to reach normal temp range. Than what should we do when the thermal mass is too big, so the expected warmup period is too long? One solution is to adjust thermal mass only on warmup period. If we adjust the thermal mass low on the warmup period, the time needed to reach the normal temp range would be short. We can use the result of this warmup to run another warmup with actual thermal mass, or we can just use the average temp of this data as T0. The warmup period dosen't need to be completely accurate, we just want to find the reasonable initial temperature by using warmup method.
 
 These problems were not reflected to the codes. As the assumptions used are way too simple, the accuracy of the simulation is not guarangeed. More updates for the codes are needed.
+
+***
 
 ### COMPARE
 

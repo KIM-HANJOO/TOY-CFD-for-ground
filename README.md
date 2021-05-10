@@ -70,7 +70,7 @@ These problems were not reflected to the codes. As the assumptions used are way 
 The image shows the temperature differnce with basic room model and 3D-added-room model.
 At every time interval, _Temperature of 3D-added-room model_ minus _Temperature of basic room model_ is plotted.
 
-![Tdiff](https://user-images.githubusercontent.com/82522118/117653559-80ab7900-b1cf-11eb-8b39-e303afb2b08b.jpg)
+![Tdiff](https://user-images.githubusercontent.com/82522118/117653559-80ab7900-b1cf-11eb-8b39-e303afb2b08b.jpg){: width="50%"}
 
 
 ### PLOT

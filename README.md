@@ -77,11 +77,12 @@ At every time interval, _Temperature of 3D-added-room model_ minus _Temperature 
 
 ![temp at every 2 month](https://user-images.githubusercontent.com/82522118/117654106-45f61080-b1d0-11eb-9f91-4c930bf27c0d.jpg)
 
-the plots shows the result of temperature of the nodes on the x=3 plane (when we define one vertex at the bottom of the 6-6-6 space as origin), and 6 plots shows the result of the dates below.
-
 [ February, August ;  
   April,    October ;  
   June,     December ] 1st at noon.
+
+the plots shows the result of temperature of the nodes on the x=3 plane(when we define one vertex at the bottom of the 6-6-6 space as origin).
+
 
 
 ### PLUS

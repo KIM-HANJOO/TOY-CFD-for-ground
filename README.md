@@ -8,7 +8,7 @@ with unsteady 2D heat-transfer room model
 <plotting of the code>
 
 
-![plott](https://user-images.githubusercontent.com/82522118/117552847-dcb7b580-b088-11eb-83df-c9eabe4a2556.png)
+![2_1_12 (3)](https://user-images.githubusercontent.com/82522118/117623559-e9cec480-b1ae-11eb-9b61-bc2c6f3df2a2.jpg)
 _Coded for 'Building Energy Modeling and Analysis' course of 'Civil, Environmental and Architectural Engineering, Korea .UNIV'_
 
 ***
@@ -46,3 +46,9 @@ In simulating this unsteady heat-transfer model, most problems appeared were rel
 Therefore, more specific settings for **warmup** and **boundary conditions** are required for the huge-thermal mass nodes. In warming up season, **thermal mass needs to be adjusted lower enough** for ground nodes to easily find the normal temperature range, and **temperature of the boundary condition nodes should be updated every time interval** with other reasonable simulation results.
 
 These problems were reflected to the codes, but since the accuracy isn't high enough and the assumptions are way too simple, more updates for the codes are needed.
+
+
+
++) 4-4-4 model with same method
+
+![4-4-4](https://user-images.githubusercontent.com/82522118/117623624-fb17d100-b1ae-11eb-8bf2-840cedb62a71.jpg)

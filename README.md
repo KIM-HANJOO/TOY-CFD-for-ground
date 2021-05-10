@@ -1,4 +1,4 @@
-# 6-6-6-3D-Heat-transfer-model
+# TOY CFD
 
 
 simple **6-6-6 size 3D ground Heat-transfer model**

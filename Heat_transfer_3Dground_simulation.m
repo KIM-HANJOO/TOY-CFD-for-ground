@@ -13,6 +13,7 @@ disp('loaded set_up.mat')
 % 파일 보낼 때 inputs.mat 파일과 ground_3D.mat 파일 같이 보내기. 안그러면 지울 수 없다고 뜸.
 % S 매트릭스 만들 때, 발밑 노드와 cond 계수 얼마로 해야 할지
 
+S_cond = 1/4 * soil_conductivity * meshsize * [1, -1; -1, 1];
 %% 미리 18번 노드 없애놓기
 
 for i = 1 : N_ele_all
@@ -311,7 +312,7 @@ for i = 1 : N_node_g
     x(1, 1) = i;
     for j = 1 : 6
         x(2, 1) = info_g(i, j+4);
-        Se_g = 1/3 * soil_conductivity * ( meshsize * meshsize / (meshsize * 0.5) ) * [1, -1; -1, 1];
+        Se_g = S_cond;
         for g=1:2; h=1:2;
             S_g(x(g,1),x(h,1)) = S_g(x(g,1),x(h,1)) + Se_g(g,h);
         end
@@ -610,7 +611,7 @@ for i = N_node_g + 1 : N_node_g + n_type_4
         if info_g(j, 11) == i
             x(1, 1) = i;
             x(2, 1) = j;
-            Se_g = 1/3 * soil_conductivity * ( meshsize * meshsize / (0.5 * meshsize) ) * [1, -1; -1, 1];
+            Se_g = 2 * S_cond;
             for g=1:2; h=1:2;
                 S_ult(x(g,1),x(h,1)) = S_ult(x(g,1),x(h,1)) + Se_g(g,h);
             end
@@ -623,7 +624,7 @@ for i = 1 : N_node_g
     if info_g(i, 1) == 2
         x(1, 1) = i;
         x(2, 1) = N_node_g2 + 13;
-        Se_g = 1/3 * soil_conductivity * ( meshsize * meshsize / (0.5 * meshsize) ) * [1, -1; -1, 1];
+        Se_g = 2 * S_cond;
         for g=1:2; h=1:2;
             S_ult(x(g,1),x(h,1)) = S_ult(x(g,1),x(h,1)) + Se_g(g,h);
         end
@@ -781,4 +782,4 @@ clearvars a;
 
 save result1.mat
 
-disp('result.mat saved !')
+disp('result1.mat saved !')

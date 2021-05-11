@@ -102,5 +102,7 @@ the plots shows the result of temperature of the nodes on the x=3 plane(when we 
 ### PLUS
 
 +) initial 4-4-4 model with same method. Just enlarged the sclae and made 6-6-6 heat transfer model.
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/82522118/117623624-fb17d100-b1ae-11eb-8bf2-840cedb62a71.jpg" img width="700px"/>
+<p/>
 
-![4-4-4](https://user-images.githubusercontent.com/82522118/117623624-fb17d100-b1ae-11eb-8bf2-840cedb62a71.jpg)

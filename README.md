@@ -9,9 +9,7 @@ only applicable to the ground node of 1D heat-transfer model suggested, as a mod
 
 
 ![미리보기용](https://user-images.githubusercontent.com/82522118/117624296-bb9db480-b1af-11eb-8973-7e2ba3383f19.png)
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/82522118/117624296-bb9db480-b1af-11eb-8973-7e2ba3383f19.png" img width="700px"/>
-<p/>
+
 _Coded for 'Building Energy Modeling and Analysis' course of 'Civil, Environmental and Architectural Engineering, Korea .UNIV'_
 
 ***
@@ -86,8 +84,10 @@ At time = 0 , the indoor temperature difference with basic and 3D-add in 0. This
 
 
 ### PLOT
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/82522118/117654106-45f61080-b1d0-11eb-9f91-4c930bf27c0d.jpg" img width="700px"/>
+<p/>
 
-![temp at every 2 month](https://user-images.githubusercontent.com/82522118/117654106-45f61080-b1d0-11eb-9f91-4c930bf27c0d.jpg)
 
 [ February, August ;  
   April,    October ;  

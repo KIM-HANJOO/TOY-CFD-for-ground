@@ -1,9 +1,9 @@
-# TOY-CFD
+# TOY-CFD for ground node
 
 
 simple **6-6-6 size 3D ground Heat-transfer model**
 
-with unsteady 2D heat-transfer room model
+module of unsteady 1D heat-transfer room model
 
 <plotting of the code>
 

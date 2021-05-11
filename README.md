@@ -16,7 +16,7 @@ _Coded for 'Building Energy Modeling and Analysis' course of 'Civil, Environment
 ***
 
 ### CAUTION
-This model can be only used on the 1D heat-transfer room model. The information of the model is at below, 'room_input(2).xlsx' contains the information of the room model. In the room model, 18th node is the ground node, and the heat exchange with the room(can be also said as the 1 storey bulding) and the ground are assumed as 1D heat-transfer instead of 3D heat-transfer.  
+This model can be only used on the 1D heat-transfer room model. The information of the model is at below, 'room_input(2).xlsx' contains the information of the room model. In the room model, 18th node is the ground node, and the heat exchange between the floor and the ground is assumed as 1D heat-transfer instead of 3D heat-transfer.  
 TOY-CFD is designed to get rid of this inaccuracy appeared by the 1D heat transfer of ground node. In the model, ground node of the existing room model is deleted, and instead 244 nodes (6-6-6 meshed ground and 28 additional surface nodes) are attached
 to the feet of the building. This model can be only used in this room design.
 
@@ -134,7 +134,7 @@ the plots shows the result of temperature of the nodes on the x=3 plane(when we 
 Also, we can see the temp through time and **depth**. Below is a plot of the temp data of the center nodes with different depths.
 
 <p align="center">
-  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/Temp%20diff%20by%20depth.png" img width="275px"/>
+  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/Temp%20diff%20by%20depth.png" img width="300px"/>
 <p/>
 
 ***

@@ -69,6 +69,22 @@ to the feet of the building. This model can be only used in this room design.
   <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/algorithm%20re-captured.png" img width="850px"/>
 <p/>
 
+Here is the order and explanation of the algorighm.
+**First,** we have to understande that in the basic 1D Heat-transfer model(you can run it with 'basics.mat', further process explaned below) there are 18 nodes represents the room element and boundary conditions. Among the nodes, there is node number 18, which represents the **ground node** of the model.
+
+What we are trying to do in this TOY-CFD code is to **replace this single node with several nodes** to express the particles of the 3D-ground. And we still want to use the basic 1D room model we already made. So we are gonna **remove 18th node and add more nodes(in this code, 216 ground nodes + 28 surface nodes)**.
+
+Because we assumed the ground as 12m-12m-12m size and meshed with 2m intervals, we will get 6 times 6 times 6 more nodes(216 nodes) as the ground nodes. Also, you need to add 'surface nodes' on top of the ground nodes to explane the convection, longwave radiation, solar heat gain acting on the surface of the ground. That's additionally 28 nodes more(6 times 6 top-ground nodes minus 8 building feet nodes). So the M, S matrix we have to make will have the size of 216-by-216, in case of f matrix 216-by-1.
+
+
+Here is how I made M, S matrix.
+
+<p align="center">
+  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/how%20to%20make%20M%2C%20S%2C%20f%20matrix.png" img width="700px"/>
+<p/>
+
+M, S and f matrix is used for making ODE of heat-transfer. M matrix represents the **thermal mass** of each nodes, S matrix for the heat exchanges occurs **with temperature difference**, f matrix for the temerature of **boundary conditions** and the heat exchanges **occurs in regardless of temerature differences**. You can find more by 'unsteady-state heat transfer model'.
+
 ***
 
 ### ISSUES

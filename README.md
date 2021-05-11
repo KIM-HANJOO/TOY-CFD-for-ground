@@ -106,7 +106,7 @@ the plots shows the result of temperature of the nodes on the x=3 plane(when we 
 Also, we can see the temp through time and **depth**. Below is a plot of the temp data of the center nodes with different depths.
 
 <p align="center">
-  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/Temp%20diff%20by%20depth.png" img width="200px"/>
+  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/Temp%20diff%20by%20depth.png" img width="350px"/>
 <p/>
 
 ***
@@ -116,17 +116,17 @@ Also, we can see the temp through time and **depth**. Below is a plot of the tem
 **+)** Here is the result of 1D heat-transfer room model. Made up of a network of 1D heat-transfer models, here is the 'Outdoor temp - 1st Wall temp - 2nd Wall temp - Indoor temp' plot for a whole year, and the concept of 'making room modle with the network of 1D heat-transfer models'
 
 <p align="center">
-  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/node%20name%20for%20room%20model.png" img width="400px"/>
+  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/node%20name%20for%20room%20model.png" img width="600px"/>
 <p/>
 <Concept of 'Network of 1D Heat-transfer models>
 
 <p align="center">
-  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/1D_model_with_warmup_Jan1st_Jan30th.jpg" img width="700px"/>
+  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/1D_model_with_warmup_Jan1st_Jan30th.jpg" img width="800px"/>
 <p/>
 < **with** Warmup period, temp data of Jan 1st to Jan 30th>
 
 <p align="center">
-  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/1D_model_without_warmup_Jan1st_Jan30th.jpg" img width="700px"/>
+  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/1D_model_without_warmup_Jan1st_Jan30th.jpg" img width="800px"/>
 <p/>
 < **without** Warmup period, temp data of Jan 1st to Jan 30th>
 

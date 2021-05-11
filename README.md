@@ -3,18 +3,19 @@
 
 simple **6-6-6 size 3D ground Heat-transfer model**
 
-module of unsteady 1D heat-transfer room model
+only applicable to the ground node of 1D heat-transfer model suggested, as a module for the ground node.
 
 <plotting of the code>
 
 
 ![미리보기용](https://user-images.githubusercontent.com/82522118/117624296-bb9db480-b1af-11eb-8973-7e2ba3383f19.png)
+
 _Coded for 'Building Energy Modeling and Analysis' course of 'Civil, Environmental and Architectural Engineering, Korea .UNIV'_
 
 ***
 
 ### CAUTION
-This model can be only used on the 1D heat transfer room model. the information of the model is at below, 'room_input(2).xlsx' contains the information of the room model. In the room model, 18th node is the ground node, and cruely the heat exchange with the room(can be also said as the 1 storey bulding) and the ground are assumed as 1D heat transfer.
+This model can be only used on the 1D heat-transfer room model. The information of the model is at below, 'room_input(2).xlsx' contains the information of the room model. In the room model, 18th node is the ground node, and cruely the heat exchange with the room(can be also said as the 1 storey bulding) and the ground are assumed as 1D heat transfer.
 So the model is designed to get rid of this inaccuracy appered by the 1D heat transfer of ground node. In the model, ground node of the existing room model is deleted, and instead 244 nodes (6*6*6 meshed ground and 28 additional surface nodes) are attached
 to the feet of the building. This model can be only used in this case of room model.
 
@@ -75,18 +76,16 @@ These problems were not reflected to the codes. As the assumptions used are way 
 The image shows the indoor temperature difference with basic room model and 3D-added-room model.
 At every time interval, _Temperature of 3D-added-room model_ minus _Temperature of basic room model_ is plotted.
 
-![Tdiff](https://user-images.githubusercontent.com/82522118/117653559-80ab7900-b1cf-11eb-8b39-e303afb2b08b.jpg)
+![temp_diff_3D_and_1D](https://user-images.githubusercontent.com/82522118/117808587-085cba80-b298-11eb-9be1-f7b1099a9e98.jpg)
+
+
 
 At time = 0 , the indoor temperature difference with basic and 3D-add in 0. This is because the warmup is not included to the 3D-added room model, so the initial temperature of indoor air is set to be the same. In december 31th, the temperature difference is approximately 0.5 degC, so we can predict the temperature difference at January 1st is similar to this result. Than, the temperature difference ranges from 0.5 degC to 2.5 degC, temp is similar even in winter, and higher in summer. At all period indoor temp of 3D-added model was higher.
 
 
 ### PLOT
 
-![temp at every 2 month](https://user-images.githubusercontent.com/82522118/117654106-45f61080-b1d0-11eb-9f91-4c930bf27c0d.jpg)
-
-[ February, August ;  
-  April,    October ;  
-  June,     December ] 1st at noon.
+![plotted_3D_temp_every_2month1 사본](https://user-images.githubusercontent.com/82522118/117812188-75724f00-b29c-11eb-9aaa-4f77224b1a90.jpg)
 
 the plots shows the result of temperature of the nodes on the x=3 plane(when we define one vertex at the bottom of the 6-6-6 space as origin).
 
@@ -97,5 +96,7 @@ the plots shows the result of temperature of the nodes on the x=3 plane(when we 
 ### PLUS
 
 +) initial 4-4-4 model with same method. Just enlarged the sclae and made 6-6-6 heat transfer model.
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/82522118/117623624-fb17d100-b1ae-11eb-8bf2-840cedb62a71.jpg" img width="700px"/>
+<p/>
 
-![4-4-4](https://user-images.githubusercontent.com/82522118/117623624-fb17d100-b1ae-11eb-8bf2-840cedb62a71.jpg)

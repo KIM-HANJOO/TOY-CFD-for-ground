@@ -75,7 +75,8 @@ These problems were not reflected to the codes. As the assumptions used are way 
 The image shows the indoor temperature difference with basic room model and 3D-added-room model.
 At every time interval, _Temperature of 3D-added-room model_ minus _Temperature of basic room model_ is plotted.
 
-![Tdiff](https://user-images.githubusercontent.com/82522118/117653559-80ab7900-b1cf-11eb-8b39-e303afb2b08b.jpg | width=100)
+![Tdiff](https://user-images.githubusercontent.com/82522118/117653559-80ab7900-b1cf-11eb-8b39-e303afb2b08b.jpg)
+
 
 At time = 0 , the indoor temperature difference with basic and 3D-add in 0. This is because the warmup is not included to the 3D-added room model, so the initial temperature of indoor air is set to be the same. In december 31th, the temperature difference is approximately 0.5 degC, so we can predict the temperature difference at January 1st is similar to this result. Than, the temperature difference ranges from 0.5 degC to 2.5 degC, temp is similar even in winter, and higher in summer. At all period indoor temp of 3D-added model was higher.
 

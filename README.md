@@ -63,7 +63,7 @@ to the feet of the building. This model can be only used in this case of room mo
 
 ### Algorithm
 <p align="center">
-  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/Algorithm%20resized.jpg" img width="700px"/>
+  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/Algorithm%20resized.jpg" img width="850px"/>
 <p/>
 
 
@@ -106,7 +106,7 @@ the plots shows the result of temperature of the nodes on the x=3 plane(when we 
 Also, we can see the temp through time and **depth**. Below is a plot of the temp data of the center nodes with different depths.
 
 <p align="center">
-  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/Temp%20diff%20by%20depth.png" img width="400px"/>
+  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/Temp%20diff%20by%20depth.png" img width="300px"/>
 <p/>
 
 ***
@@ -136,9 +136,4 @@ Also, we can see the temp through time and **depth**. Below is a plot of the tem
 **+)** initial 4-4-4 model with same method. Just enlarged the sclae and made 6-6-6 heat transfer model.
 <p align="center">
   <img src="https://user-images.githubusercontent.com/82522118/117623624-fb17d100-b1ae-11eb-8bf2-840cedb62a71.jpg" img width="700px"/>
-<p/>
-
-
-<p align="center">
-  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/" img width="700px"/>
 <p/>

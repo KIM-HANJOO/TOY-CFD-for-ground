@@ -40,7 +40,7 @@ to the feet of the building. This model can be only used in this case of room mo
 > 'room_input(2)' contains the informations of the room we are modeling  
 > 'TMY3' contains the weather data of a whole year (from January 1st to December 31st)
 
-
+***
 
 ### CONCEPT
 
@@ -61,12 +61,14 @@ to the feet of the building. This model can be only used in this case of room mo
 
 4. All cubes (=nodes) produced by meshing exchange heat solely through conduction, with six other cubes (=nodes) adjacent to the face.
 
+
+
 ### Algorithm
 <p align="center">
   <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/Algorithm%20resized.jpg" img width="850px"/>
 <p/>
 
-
+***
 
 ### ISSUES
 
@@ -134,6 +136,8 @@ Also, we can see the temp through time and **depth**. Below is a plot of the tem
 < **without** Warmup period, temp data of Jan 1st to Jan 30th>
 
 'With Warmup' and 'without warmup' simulation results are plotted with different scale. 
+
+
 
 
 **+)** initial 4-4-4 model with same method. Just enlarged the sclae and made 6-6-6 heat transfer model.

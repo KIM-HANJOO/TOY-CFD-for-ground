@@ -8,7 +8,7 @@ only applicable to the ground node of 1D heat-transfer model suggested, as a mod
 <plotting of the code>
 
 
-![미리보기용](https://user-images.githubusercontent.com/82522118/117624296-bb9db480-b1af-11eb-8973-7e2ba3383f19.png)
+![미리보기용](https://user-images.githubusercontent.com/82522118/117624296-bb9db480-b1af-11eb-8973-7e2ba3383f19.png){:height="50%"}
 _Coded for 'Building Energy Modeling and Analysis' course of 'Civil, Environmental and Architectural Engineering, Korea .UNIV'_
 
 ***

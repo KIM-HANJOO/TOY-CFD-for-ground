@@ -118,19 +118,22 @@ Also, we can see the temp through time and **depth**. Below is a plot of the tem
 <p align="center">
   <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/node%20name%20for%20room%20model.png" img width="600px"/>
 <p/>
+
 <Concept of 'Network of 1D Heat-transfer models>
 
 <p align="center">
   <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/1D_model_with_warmup_Jan1st_Jan30th.jpg" img width="800px"/>
 <p/>
+
 < **with** Warmup period, temp data of Jan 1st to Jan 30th>
 
 <p align="center">
   <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/1D_model_without_warmup_Jan1st_Jan30th.jpg" img width="800px"/>
 <p/>
+
 < **without** Warmup period, temp data of Jan 1st to Jan 30th>
 
-
+'With Warmup' and 'without warmup' simulation results are plotted with different scale. 
 
 
 **+)** initial 4-4-4 model with same method. Just enlarged the sclae and made 6-6-6 heat transfer model.

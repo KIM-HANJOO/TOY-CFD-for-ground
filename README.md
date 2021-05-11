@@ -7,8 +7,9 @@ only applicable to the ground node of 1D heat-transfer model suggested, as a mod
 
 <plotting of the code>
 
-
-![미리보기용](https://user-images.githubusercontent.com/82522118/117624296-bb9db480-b1af-11eb-8973-7e2ba3383f19.png)
+<p align="center">
+  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/domain(feb_1st_noon).png">
+<p/>
 
 _Coded for 'Building Energy Modeling and Analysis' course of 'Civil, Environmental and Architectural Engineering, Korea .UNIV'_
 

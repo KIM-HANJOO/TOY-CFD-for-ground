@@ -92,11 +92,26 @@ the plots shows the result of temperature of the nodes on the x=3 plane(when we 
 
 ***
 
-
 ### PLUS
+
++) Here is the result of 1D heat-transfer room model. Made up of a network of 1D heat-transfer models, here is the 'Outdoor temp - 1st Wall temp - 2nd Wall temp - Indoor temp' plot for a whole year, and the concept of 'making room modle with the network of 1D heat-transfer models'
+
+<p align="center">
+  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/node%20name%20for%20room%20model.png" img width="400px"/>
+<p/>
+
+<p align="center">
+  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/1D_model_with_warmup_Jan1st_Jan30th.jpg" img width="700px"/>
+<p/>
+
+
 
 +) initial 4-4-4 model with same method. Just enlarged the sclae and made 6-6-6 heat transfer model.
 <p align="center">
   <img src="https://user-images.githubusercontent.com/82522118/117623624-fb17d100-b1ae-11eb-8bf2-840cedb62a71.jpg" img width="700px"/>
 <p/>
 
+
+<p align="center">
+  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/" img width="700px"/>
+<p/>

@@ -116,7 +116,12 @@ Also, we can see the temp through time and **depth**. Below is a plot of the tem
 
 ### PLUS
 
-**+)** Here is the result of 1D heat-transfer room model. Made up of a network of 1D heat-transfer models, here is the 'Outdoor temp - 1st Wall temp - 2nd Wall temp - Indoor temp' plot for a whole year, and the concept of 'making room modle with the network of 1D heat-transfer models'
+**+)** Here is the result of 1D heat-transfer room model. You can actually run the simualaton by :
+
+2.  run **'set_up.mat'**
+3.  run **'basics.mat'**
+
+Made up of a network of 1D heat-transfer models, in below there are two plot results ; 'Outdoor temp - 1st Wall temp - 2nd Wall temp - Indoor temp' with and withoud warmup simulation result for a whole year, and the concept of 'making room modle with the network of 1D heat-transfer models'
 
 <p align="center">
   <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/node%20name%20for%20room%20model.png" img width="600px"/>

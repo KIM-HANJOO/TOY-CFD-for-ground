@@ -122,13 +122,13 @@ Also, we can see the temp through time and **depth**. Below is a plot of the tem
 <Concept of 'Network of 1D Heat-transfer models>
 
 <p align="center">
-  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/1D_model_with_warmup_Jan1st_Jan30th.jpg" img width="800px"/>
+  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/1D_model_with_warmup_Jan1st_Jan30th.jpg" img width="1000px"/>
 <p/>
 
 < **with** Warmup period, temp data of Jan 1st to Jan 30th>
 
 <p align="center">
-  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/1D_model_without_warmup_Jan1st_Jan30th.jpg" img width="800px"/>
+  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/1D_model_without_warmup_Jan1st_Jan30th.jpg" img width="1000px"/>
 <p/>
 
 < **without** Warmup period, temp data of Jan 1st to Jan 30th>

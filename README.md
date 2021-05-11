@@ -3,7 +3,7 @@
 
 simple **6-6-6 size 3D ground Heat-transfer model**
 
-module of unsteady 1D heat-transfer room model
+only applicable to the ground node of 1D heat-transfer model suggested, as a module for the ground node.
 
 <plotting of the code>
 

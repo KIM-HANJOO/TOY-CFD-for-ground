@@ -80,7 +80,7 @@ Because we assumed the ground as 12m-12m-12m size and meshed with 2m intervals, 
 Here is how I made M, S matrix.
 
 <p align="center">
-  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/how%20to%20make%20M%2C%20S%2C%20f%20matrix.png" img width="700px"/>
+  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/how%20to%20make%20M%2C%20S%2C%20f%20matrix.png" img width="550px"/>
 <p/>
 
 M, S and f matrix is used for making ODE of heat-transfer. M matrix represents the **thermal mass** of each nodes, S matrix for the heat exchanges occurs **with temperature difference**, f matrix for the temerature of **boundary conditions** and the heat exchanges **occurs in regardless of temerature differences**. You can find more by 'unsteady-state heat transfer model'.

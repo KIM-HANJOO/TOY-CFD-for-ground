@@ -84,8 +84,8 @@ At time = 0 , the indoor temperature difference with basic and 3D-add in 0. This
 
 
 ### PLOT
-![plotted_3D_temp_every_2month1](https://user-images.githubusercontent.com/82522118/117811574-ab630380-b29b-11eb-8f7f-4d9dd02d3723.jpg)
 
+![plotted_3D_temp_every_2month1 사본](https://user-images.githubusercontent.com/82522118/117812188-75724f00-b29c-11eb-9aaa-4f77224b1a90.jpg)
 
 
 [ February, August ;  

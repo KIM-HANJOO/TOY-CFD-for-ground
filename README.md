@@ -24,7 +24,7 @@ to the feet of the building. This model can be only used in this room design.
   <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/mesh%20and%20room%20model.jpg" img width="700px"/>
 <p/>
 
-<left : node names of the room model, right : mesh >
+<**left and middle** : node and node numbers of the room model / **right** : mesh >
 
 ***
 
@@ -66,8 +66,24 @@ to the feet of the building. This model can be only used in this room design.
 
 ### Algorithm
 <p align="center">
-  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/Algorithm%20resized.jpg" img width="850px"/>
+  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/algorithm%20re-captured.png" img width="850px"/>
 <p/>
+
+Here is the order and explanation of the algorighm.
+**First,** we have to understande that in the basic 1D Heat-transfer model(you can run it with 'basics.mat', further process explaned below) there are 18 nodes represents the room element and boundary conditions. Among the nodes, there is node number 18, which represents the **ground node** of the model.
+
+What we are trying to do in this TOY-CFD code is to **replace this single node with several nodes** to express the particles of the 3D-ground. And we still want to use the basic 1D room model we already made. So we are gonna **remove 18th node and add more nodes(in this code, 216 ground nodes + 28 surface nodes)**.
+
+Because we assumed the ground as 12m-12m-12m size and meshed with 2m intervals, we will get 6 times 6 times 6 more nodes(216 nodes) as the ground nodes. Also, you need to add 'surface nodes' on top of the ground nodes to explane the convection, longwave radiation, solar heat gain acting on the surface of the ground. That's additionally 28 nodes more(6 times 6 top-ground nodes minus 8 building feet nodes). So the M, S matrix we have to make will have the size of 216-by-216, in case of f matrix 216-by-1.
+
+
+Here is how I made M, S matrix.
+
+<p align="center">
+  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/how%20to%20make%20M%2C%20S%2C%20f%20matrix.png" img width="550px"/>
+<p/>
+
+M, S and f matrix is used for making ODE of heat-transfer. M matrix represents the **thermal mass** of each nodes, S matrix for the heat exchanges occurs **with temperature difference**, f matrix for the temerature of **boundary conditions** and the heat exchanges **occurs in regardless of temerature differences**. You can find more by 'unsteady-state heat transfer model'.
 
 ***
 
@@ -116,7 +132,12 @@ Also, we can see the temp through time and **depth**. Below is a plot of the tem
 
 ### PLUS
 
-**+)** Here is the result of 1D heat-transfer room model. Made up of a network of 1D heat-transfer models, here is the 'Outdoor temp - 1st Wall temp - 2nd Wall temp - Indoor temp' plot for a whole year, and the concept of 'making room modle with the network of 1D heat-transfer models'
+**+)** Here is the result of 1D heat-transfer room model. You can actually run the simualaton by :
+
+2.  run **'set_up.mat'**
+3.  run **'basics.mat'**
+
+Made up of a network of 1D heat-transfer models, in below there are two plot results ; 'Outdoor temp - 1st Wall temp - 2nd Wall temp - Indoor temp' with and withoud warmup simulation result for a whole year, and the concept of 'making room modle with the network of 1D heat-transfer models'
 
 <p align="center">
   <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/node%20name%20for%20room%20model.png" img width="600px"/>
@@ -140,8 +161,11 @@ Also, we can see the temp through time and **depth**. Below is a plot of the tem
 
 
 
+***
 
-**+)** initial 4-4-4 model with same method. Just enlarged the sclae and made 6-6-6 heat transfer model.
+### PLUSPLUS
+
+This is the initial 4-4-4 model with same method. Made this TOY-TOY-CFD version first and than enlarged the sclae, up to  6-6-6 heat transfer model.
 <p align="center">
   <img src="https://user-images.githubusercontent.com/82522118/117623624-fb17d100-b1ae-11eb-8bf2-840cedb62a71.jpg" img width="700px"/>
 <p/>

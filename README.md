@@ -24,7 +24,7 @@ to the feet of the building. This model can be only used in this room design.
   <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/mesh%20and%20room%20model.jpg" img width="700px"/>
 <p/>
 
-<left : node names of the room model, right : mesh >
+<**left** : node names of the room model / **right** : mesh >
 
 ***
 

@@ -7,25 +7,28 @@ only applicable to the ground node of 1D heat-transfer model suggested, as a mod
 
 <plotting of the code>
 
-
-![미리보기용](https://user-images.githubusercontent.com/82522118/117624296-bb9db480-b1af-11eb-8973-7e2ba3383f19.png)
+<p align="center">
+  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/domain(feb_1st_noon).png">
+<p/>
 
 _Coded for 'Building Energy Modeling and Analysis' course of 'Civil, Environmental and Architectural Engineering, Korea .UNIV'_
 
 ***
 
 ### CAUTION
-This model can be only used on the 1D heat-transfer room model. The information of the model is at below, 'room_input(2).xlsx' contains the information of the room model. In the room model, 18th node is the ground node, and cruely the heat exchange with the room(can be also said as the 1 storey bulding) and the ground are assumed as 1D heat transfer.
-So the model is designed to get rid of this inaccuracy appered by the 1D heat transfer of ground node. In the model, ground node of the existing room model is deleted, and instead 244 nodes (6*6*6 meshed ground and 28 additional surface nodes) are attached
-to the feet of the building. This model can be only used in this case of room model.
+This model can be only used on the 1D heat-transfer room model. The information of the model is at below, 'room_input(2).xlsx' contains the information of the room model. In the room model, 18th node is the ground node, and the heat exchange with the room(can be also said as the 1 storey bulding) and the ground are assumed as 1D heat-transfer instead of 3D heat-transfer.  
+TOY-CFD is designed to get rid of this inaccuracy appeared by the 1D heat transfer of ground node. In the model, ground node of the existing room model is deleted, and instead 244 nodes (6-6-6 meshed ground and 28 additional surface nodes) are attached
+to the feet of the building. This model can be only used in this room design.
 
-(lecture 14. pp2)
+<p align="center">
+  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/mesh%20and%20room%20model.jpg" img width="700px"/>
+<p/>
 
-(room and box model in ppt)
+<left : node names of the room model, right : mesh >
 
 ***
 
-### read.me
+### RUN
 
 
 0. MATLAB is required
@@ -38,7 +41,7 @@ to the feet of the building. This model can be only used in this case of room mo
 > 'room_input(2)' contains the informations of the room we are modeling  
 > 'TMY3' contains the weather data of a whole year (from January 1st to December 31st)
 
-
+***
 
 ### CONCEPT
 
@@ -59,6 +62,15 @@ to the feet of the building. This model can be only used in this case of room mo
 
 4. All cubes (=nodes) produced by meshing exchange heat solely through conduction, with six other cubes (=nodes) adjacent to the face.
 
+
+
+### Algorithm
+<p align="center">
+  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/Algorithm%20resized.jpg" img width="850px"/>
+<p/>
+
+***
+
 ### ISSUES
 
 The main purpose of heat transfer model is to predict indoor air temp under changing outdoor air temp. ODE starts to calculate from one boundary condition node to another, and the nodes that are at the path of the ODE will get the temperature difference through time as a result. **So the result of simulation unconditionally depends on the temp of boundary conditions.** In 216 nodes additionally added, 116 nodes are boundary conditions, so the ratio of boundary condition nodes in all nodes is approximately near half. **As the number of boundary condition nodes is quite large, and those 116 boundary condtion nodes' temperature are fixed, result of the simulation should be sadly inaccurate.** As it is hard to expect that there will be the data of cubes(newly defined by me), we have to simulate the boundary conditions' thermal behavior. What I suggest is to delete building part in the 3D heat transfer model, and simulate with only soil and surface nodes. With this simulation and fixed boundary condition temperature, we can get the temp difference through time and depth of the vertical nodes at the center of 12m * 12m * 12m space(in this case, (3, 3, z) nodes) as a result. Than re-input the temp data to the boundary condition nodes, depending on depth and updating through time intervals and re-simulate. The result of the vertical nodes at the cent, will converge to certain data. This data can be the temperature data of boundary condition nodes. This 'updating simulated temp data to boundary condition nodes' can be one solution.
@@ -76,7 +88,10 @@ These problems were not reflected to the codes. As the assumptions used are way 
 The image shows the indoor temperature difference with basic room model and 3D-added-room model.
 At every time interval, _Temperature of 3D-added-room model_ minus _Temperature of basic room model_ is plotted.
 
-![temp_diff_3D_and_1D](https://user-images.githubusercontent.com/82522118/117808587-085cba80-b298-11eb-9be1-f7b1099a9e98.jpg)
+<p align="center">
+  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/temp_diff_3D_and_1D.jpg">
+<p/>
+
 
 
 
@@ -84,19 +99,49 @@ At time = 0 , the indoor temperature difference with basic and 3D-add in 0. This
 
 
 ### PLOT
+<p align="center">
+  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/plotted_3D_temp_every_2month1%20_named.jpg">
+<p/>
 
-![plotted_3D_temp_every_2month1 사본](https://user-images.githubusercontent.com/82522118/117812188-75724f00-b29c-11eb-9aaa-4f77224b1a90.jpg)
 
 the plots shows the result of temperature of the nodes on the x=3 plane(when we define one vertex at the bottom of the 6-6-6 space as origin).
 
+Also, we can see the temp through time and **depth**. Below is a plot of the temp data of the center nodes with different depths.
+
+<p align="center">
+  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/Temp%20diff%20by%20depth.png" img width="275px"/>
+<p/>
 
 ***
 
-
 ### PLUS
 
-+) initial 4-4-4 model with same method. Just enlarged the sclae and made 6-6-6 heat transfer model.
+**+)** Here is the result of 1D heat-transfer room model. Made up of a network of 1D heat-transfer models, here is the 'Outdoor temp - 1st Wall temp - 2nd Wall temp - Indoor temp' plot for a whole year, and the concept of 'making room modle with the network of 1D heat-transfer models'
+
+<p align="center">
+  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/node%20name%20for%20room%20model.png" img width="600px"/>
+<p/>
+
+<Concept of 'Network of 1D Heat-transfer models>
+
+<p align="center">
+  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/1D_model_with_warmup_Jan1st_Jan30th.jpg" img width="1000px"/>
+<p/>
+
+< **with** Warmup period, temp data of Jan 1st to Jan 30th>
+
+<p align="center">
+  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/1D_model_without_warmup_Jan1st_Jan30th.jpg" img width="1000px"/>
+<p/>
+
+< **without** Warmup period, temp data of Jan 1st to Jan 30th>
+
+'With Warmup' and 'without warmup' simulation results are plotted with different scale. 
+
+
+
+
+**+)** initial 4-4-4 model with same method. Just enlarged the sclae and made 6-6-6 heat transfer model.
 <p align="center">
   <img src="https://user-images.githubusercontent.com/82522118/117623624-fb17d100-b1ae-11eb-8bf2-840cedb62a71.jpg" img width="700px"/>
 <p/>
-

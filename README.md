@@ -149,7 +149,7 @@ Also, we can see the temp through time and **depth**. Below is a plot of the tem
 Made up of a network of 1D heat-transfer models, in below there are two plot results ; 'Outdoor temp - 1st Wall temp - 2nd Wall temp - Indoor temp' with and withoud warmup simulation result for a whole year, and the concept of 'making room modle with the network of 1D heat-transfer models'
 
 <p align="center">
-  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/node%20name%20for%20room%20model.png" img width="600px"/>
+  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/concept%20of%20network%20of%201D%20heat%20transfer%20model.png" img width="400px"/>
 <p/>
 
 <Concept of 'Network of 1D Heat-transfer models>

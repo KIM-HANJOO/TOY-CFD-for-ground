@@ -87,11 +87,6 @@ At time = 0 , the indoor temperature difference with basic and 3D-add in 0. This
 
 ![plotted_3D_temp_every_2month1 사본](https://user-images.githubusercontent.com/82522118/117812188-75724f00-b29c-11eb-9aaa-4f77224b1a90.jpg)
 
-
-[ February, August ;  
-  April,    October ;  
-  June,     December ] 1st at noon.
-
 the plots shows the result of temperature of the nodes on the x=3 plane(when we define one vertex at the bottom of the 6-6-6 space as origin).
 
 

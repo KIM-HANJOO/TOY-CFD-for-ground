@@ -140,8 +140,11 @@ Also, we can see the temp through time and **depth**. Below is a plot of the tem
 
 
 
+***
 
-**+)** initial 4-4-4 model with same method. Just enlarged the sclae and made 6-6-6 heat transfer model.
+### PLUSPLUS
+
+This is the initial 4-4-4 model with same method. Made this TOY-TOY-CFD version first and than enlarged the sclae, up to  6-6-6 heat transfer model.
 <p align="center">
   <img src="https://user-images.githubusercontent.com/82522118/117623624-fb17d100-b1ae-11eb-8bf2-840cedb62a71.jpg" img width="700px"/>
 <p/>

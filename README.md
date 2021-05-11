@@ -106,7 +106,7 @@ the plots shows the result of temperature of the nodes on the x=3 plane(when we 
 Also, we can see the temp through time and **depth**. Below is a plot of the temp data of the center nodes with different depths.
 
 <p align="center">
-  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/Temp%20diff%20by%20depth.png" img width="300px"/>
+  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/Temp%20diff%20by%20depth.png" img width="200px"/>
 <p/>
 
 ***
@@ -123,12 +123,12 @@ Also, we can see the temp through time and **depth**. Below is a plot of the tem
 <p align="center">
   <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/1D_model_with_warmup_Jan1st_Jan30th.jpg" img width="700px"/>
 <p/>
-<**with** Warmup period, temp data of Jan 1st to Jan 30th>
+< **with** Warmup period, temp data of Jan 1st to Jan 30th>
 
 <p align="center">
   <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/1D_model_without_warmup_Jan1st_Jan30th.jpg" img width="700px"/>
 <p/>
-<**without** Warmup period, temp data of Jan 1st to Jan 30th>
+< **without** Warmup period, temp data of Jan 1st to Jan 30th>
 
 
 

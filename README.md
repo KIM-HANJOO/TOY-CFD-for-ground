@@ -66,7 +66,7 @@ to the feet of the building. This model can be only used in this room design.
 
 ### Algorithm
 <p align="center">
-  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/Algorithm%20resized.jpg" img width="850px"/>
+  <img src="https://github.com/suhyuuk/TOY-CFD-for-ground/blob/main/repo_image/algorithm%20re-captured.png" img width="850px"/>
 <p/>
 
 ***

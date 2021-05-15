@@ -1,7 +1,20 @@
-clc; % clear all;
+clc;
+clear all;
 
 weather = xlsread('TMY3.xlsx');
 disp("weather data loaded")
+
+%% inputs needed
+
+mesh = 6;
+meshsize = 2;
+
+% mesh numbers, consider T_sky + T_out later
+N_node_go = mesh * mesh * (mesh + 1);
+
+M = zeros(N_node_go + 2, N_node_go + 2);
+S = zeros(N_node_go + 2 + 1, N_node_go + 2 + 1);
+f = zeros(N_node_go + 2, 1);
 
 %% Material properties
 
@@ -17,17 +30,6 @@ S_cond = 1/4 * soil_conductivity * meshsize * [1, -1; -1, 1];
 S_conv = soil_h_conv * meshsize * meshsize * [1, -1; -1, 1];
 S_rad = soil_h_rad * meshsize * meshsize * [1, -1; -1, 1];
 
-%% inputs needed
-
-mesh = 6;
-meshsize = 2;
-
-% mesh numbers, consider T_sky + T_out later
-N_node_go = mesh * mesh * (mesh + 1);
-
-M = zeros(N_node_go + 2, N_node_go + 2);
-S = zeros(N_node_go + 2 + 1, N_node_go + 2 + 1);
-f = zeros(N_node_go + 2, 1);
 
 %% matching numbers with coordinates
 Node_info = zeros(N_node_go, 10);
@@ -227,19 +229,14 @@ for i = 1 : N_node_go
     end   
 end
 
-clearvars n1;
-clearvars n2;
-clearvars n3;
-clearvars n4;
-clearvars n5;
-clearvars n6;
-clearvars x;
-clearvars y;
-clearvars z;
-clearvars g;
-clearvars i;
-clearvars j;
-clearvars h;
+%%
+clearvars n1; clearvars n2; clearvars n3;
+clearvars n4; clearvars n5; clearvars n6;
+clearvars x; clearvars y; clearvars z;
+clearvars g; clearvars h;
+clearvars j; clearvars i;
 
 
-% f
+%% Making of f matrix
+
+

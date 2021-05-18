@@ -269,23 +269,10 @@ clearvars S;
 S = S_convert;
 clearvars S_convert;
 
-%% Boundary conditions
-
 for i = 1 : N_node_go
-    if Node_info(i, 1) == 3
-        M(i, :) = 0;
-        S(i, :) = 0;
-        S(i, i) = 1;
-    elseif Nodie_info(i, 1) == 1
-        M(i, :) = 0;
-        S(i, :) = 0;
-        S(i, i) = 1;
+    if Node_info(i, 1) 
     end
 end
-
-M(N_node_go + 1 : N_node_all, :) = 0;
-S(N_node_go + 1 : N_node_all, :) = 0;
-S(N_node_go + 1 : N_node_all, N_node_go + 1 : N_node_all) = 1;
 
 %% Making of f matrix
 

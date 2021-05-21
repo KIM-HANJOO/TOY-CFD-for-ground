@@ -1,10 +1,7 @@
 clc;
 %clear all;
-
-weather = xlsread('TMY3.xlsx');
-disp("weather data loaded")
-temp_depth = xlsread('Tdepth.xlsx');
-disp("temperature difference by depth data loaded(initial temp condition)")
+load('for_ground_simulate.mat')
+%% 253번이 T_out, 254번이 T_sky
 
 %% inputs needed
 
@@ -14,6 +11,7 @@ meshsize = 2;
 % mesh numbers, consider T_sky + T_out later
 N_node_go = mesh * mesh * (mesh + 1);
 N_node_all = N_node_go + 2;
+N_weather = max(size(weather(:, 1)));
 
 M = zeros(N_node_go + 2, N_node_go + 2);
 S = zeros(N_node_go + 2 + 1, N_node_go + 2 + 1);
@@ -224,15 +222,15 @@ for i = 1 : N_node_go
         end
         
         % add **convection between surface nodes and T_out
-        y(2, 1) = i;
-        y(2, 2) = N_node_go + 1;
+        y(1, 1) = i;
+        y(2, 1) = N_node_go + 1;
         for n3 = 1 : 2; n4 = 1 : 2;
             S(y(n3,1), y(n4,1)) = S(y(n3,1), y(n4,1)) + S_conv(n3, n4);
         end
         
         % add **longwave radiation between surface nodes and T_sky
-        z(2, 1) = i; 
-        z(2, 2) = N_node_go + 2;
+        z(1, 1) = i; 
+        z(2, 1) = N_node_go + 2;
         for n5 = 1 : 2; n6 = 1 : 2;
             S(z(n5,1), z(n6,1)) = S(z(n5,1), z(n6,1)) + S_rad(n5, n6);
         end
@@ -276,7 +274,7 @@ for i = 1 : N_node_go
         M(i, :) = 0;
         S(i, :) = 0;
         S(i, i) = 1;
-    elseif Nodie_info(i, 1) == 1
+    elseif Node_info(i, 1) == 1
         M(i, :) = 0;
         S(i, :) = 0;
         S(i, i) = 1;
@@ -287,10 +285,96 @@ M(N_node_go + 1 : N_node_all, :) = 0;
 S(N_node_go + 1 : N_node_all, :) = 0;
 S(N_node_go + 1 : N_node_all, N_node_go + 1 : N_node_all) = 1;
 
-%% Making of f matrix
 
-T_00 = ones(N_node_all, 1);
+%% Load Tdepth.xlsx
+% load('update_initial_condition.mat')
+T_depth = xlsread('Tdepth.xlsx');
+
+%% Making of f matrix
+f(N_node_go + 2, 1) = 1;
+
 for i = 1 : N_node_go
-    
+    if Node_info(i, 1) ~= 0
+        if Node_info(i, 1) ~= 4
+            f(i, 1) = T_depth(2 * Node_info(i, 4) + 1, 2);
+        end
+    end
 end
+
+%% Set initial Temperature
+T_00 = 25 * ones(N_node_all, 1);
+% for i = 1 : N_node_go
+%     T_00(i, 1) = T_depth(2 * Node_info(i, 4) + 1, 2);
+% end
+% T_00(N_node_go + 1, 1) = 25;
+% T_00(N_node_go + 2, 1) = 1;
+% 
+% T_all = zeros(N_weather, 3 + N_node_all);
+% T_all(:, 1:3) = weather(:, 1:3);
+
+%% solve ODE
+
+disp('solving ODE')
+
+tspan = [0 : 1];
+
+for i  = 1 : N_weather
+    %%% f update
+    f(N_node_go + 1, 1) = weather(i, 4);
+    
+    %%% update bc nodes
+    %%%
+    for j = 1 : N_node_go
+        if Node_info(j, 1) == 4 % for surface nodes
+            f(j, 1) = soil_solar_absorptance * meshsize * meshsize * weather(i, 9);
+        end
+    end
+    
+    [t,T]=unsteady(tspan, T_00, M, S, f);
+    T_00 = T(end, :);
+    T_all(i, 4:N_node_g2 + N_node + 3) = T_00;
+    
+    if i == round(N_weather * 1/10)
+        disp('ODE is 10% solved ...')
+    end
+    
+    if i == round(N_weather * 1/5)
+        disp('ODE is 20% solved ...')
+    end
+    
+    if i == round(N_weather * 3/10)
+        disp('ODE is 30% solved ...')
+    end
+    
+    if i == round(N_weather * 2/5)
+        disp('ODE is 40% solved ...')
+    end
+    
+    if i == round(N_weather * 5/10)
+        disp('ODE is 50% solved ...')
+    end
+    
+    if i == round(N_weather * 3/5)
+        disp('ODE is 60% solved ...')
+    end
+    
+    if i == round(N_weather * 7/10)
+        disp('ODE is 70% solved ...')
+    end
+    
+    if i == round(N_weather * 4/5)
+        disp('ODE is 80% solved ...')
+    end
+    
+    if i == round(N_weather * 9/10)
+        disp('ODE is 90% solved ...')
+    end
+    
+    if i == round(N_weather * 5/5)
+        disp('ODE is 100% solved ...')
+    end
+end 
+
+%% save result
+save center_temp.mat
 

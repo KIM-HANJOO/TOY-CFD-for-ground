@@ -1,9 +1,9 @@
-load("result1.mat")
+load("final_result.mat")
 
 %% 3D 플롯할 시간 정하기
-plottime_month = 1;%월
-plottime_day = 10;%일
-plottime_hour = 5;%시
+plottime_month = 12;%월
+plottime_day = 1;%일
+plottime_hour = 12;%시
 
 %%
 for i=1:N_weather
@@ -67,7 +67,7 @@ plot(y, T_all(D1:D2, [type_0_centre(1, 1) + 3, type_0_centre(1, 2) + 3, type_0_c
 legend('type 0, depth -9', 'type 0, depth -7', 'type 0, depth -5', 'type 0, depth -3');
 % surface = 191 + 3
 
-axis([DD1 DD2 5 +15]);
+axis([DD1 DD2 5 +30]);
 xtickformat('%.2f');
 pbaspect([1 1 1])
 title('temp');

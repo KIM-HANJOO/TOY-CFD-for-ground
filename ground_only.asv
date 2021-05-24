@@ -282,35 +282,46 @@ for i = 1 : N_node_go
 end
 
 M(N_node_go + 1 : N_node_all, :) = 0;
-S(N_node_go + 1 : N_node_all, :) = 0;
-S(N_node_go + 1 : N_node_all, N_node_go + 1 : N_node_all) = 1;
+S(N_node_go + 2, :) = 0;
+S(N_node_go + 2, N_node_go + 2) = 1;
 
 
 %% Load Tdepth.xlsx
 % load('update_initial_condition.mat')
 T_depth = xlsread('Tdepth.xlsx');
+load('T_ground2.mat')
 
 %% Making of f matrix
 f(N_node_go + 2, 1) = 1;
 
-for i = 1 : N_node_go
-    if Node_info(i, 1) ~= 0
-        if Node_info(i, 1) ~= 4
-            f(i, 1) = T_depth(2 * Node_info(i, 4) + 1, 2);
-        end
-    end
-end
+%% before Warmup 
+% for i = 1 : N_node_go
+%     if Node_info(i, 1) ~= 0
+%         if Node_info(i, 1) ~= 4
+% %             f(i, 1) = T_depth(2 * Node_info(i, 4) + 1, 2);
+%             f(i, 1) = T_depth(12 - 2 * Node_info(i, 4) + 1, 2);
+%         end
+%     end
+% end
+
 
 %% Set initial Temperature
-T_00 = 25 * ones(N_node_all, 1);
+T_00 = 12 * ones(N_node_all, 1);
+
+
 % for i = 1 : N_node_go
 %     T_00(i, 1) = T_depth(2 * Node_info(i, 4) + 1, 2);
 % end
-% T_00(N_node_go + 1, 1) = 25;
-% T_00(N_node_go + 2, 1) = 1;
-% 
-% T_all = zeros(N_weather, 3 + N_node_all);
-% T_all(:, 1:3) = weather(:, 1:3);
+
+for i = 1 : N_node_go
+            T_00(i, 1) = T_ground_depth(1, Node_info(i, 4) + 4);
+end
+
+T_00(N_node_go + 1, 1) = 25;
+T_00(N_node_go + 2, 1) = 1;
+
+T_all = zeros(N_weather, 3 + N_node_all);
+T_all(:, 1:3) = weather(:, 1:3);
 
 %% solve ODE
 
@@ -330,9 +341,17 @@ for i  = 1 : N_weather
         end
     end
     
+    for j = 1 : N_node_go
+        if Node_info(j, 1) ~= 0
+            if Node_info(j, 1) ~= 4
+                f(j, 1) = T_ground_depth(i, Node_info(j, 4) + 4);
+            end
+        end
+    end
+    
     [t,T]=unsteady(tspan, T_00, M, S, f);
     T_00 = T(end, :);
-    T_all(i, 4:N_node_g2 + N_node + 3) = T_00;
+    T_all(i, 4 : N_node_all + 3) = T_00;
     
     if i == round(N_weather * 1/10)
         disp('ODE is 10% solved ...')
@@ -377,4 +396,5 @@ end
 
 %% save result
 save center_temp.mat
+disp('result saved')
 

@@ -652,8 +652,8 @@ S_ult(x + 16, x + 16) = 1;
 disp('M, S, f matrix is done ...')
 %% ODE
 
-load("warmup_temp.mat")
-disp('loaded 3D ground warmup data')
+% load("warmup_temp.mat")
+% disp('loaded 3D ground warmup data')
 %% warmup 2
 clearvars x;
 clearvars d;

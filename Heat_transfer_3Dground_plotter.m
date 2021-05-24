@@ -1,4 +1,4 @@
-load("final_result.mat")
+load("result1.mat")
 
 %% 3D 플롯할 시간 정하기
 plottime_month = 12;%월

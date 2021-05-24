@@ -34,11 +34,11 @@ BCT_g(1, 15) = 1;
 
 %% mesh grid
 
-mesh = 8; % 짝수값으로 지정해주기
+mesh = 6; % 짝수값으로 지정해주기
 meshsize = 12 * 1/mesh;
 
 %% meshsize 때문에 건물 바닥만큼의 면적이 호환이 안 될 때, 가로세로 너비 다시 정하기
-width1 = 3;%m
+width1 = 2;%m
 width2 = 6;%m
 
 %%% 호환이 되면 0으로 두기

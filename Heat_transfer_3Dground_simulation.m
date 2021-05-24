@@ -152,7 +152,7 @@ for i = 1 : N_node_g
                 for j = 0 : round(width2 / meshsize) ; k = 0 : round(width1 / (meshsize));
                      l1 = mesh / 2 - round(width2 / meshsize) + 1 + j;
                      l2 = mesh / 2 - round(width1 / meshsize) + k;
-                     l3 = l1 + l2 * mesh + mesh * mesh + 1;
+                     l3 = l1 + l2 * mesh + (mesh - 1) * mesh + 1;
                      info_g(l3, 1) = 2;                  
                 end
             end

@@ -1,7 +1,7 @@
 load("result1.mat")
 
 %% 3D 플롯할 시간 정하기
-plottime_month = 12;%월
+plottime_month = 8;%월
 plottime_day = 1;%일
 plottime_hour = 12;%시
 

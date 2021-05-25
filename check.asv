@@ -1,0 +1,54 @@
+clc;
+load('T_basic.mat')
+load('T_airtube.mat')
+
+T_compare = T_basic - T_airtube;
+T_compare(3 + 252 + 16)
+
+% 
+% %% 3D 플롯할 시간 정하기
+% plottime_month = 8;%월
+% plottime_day = 1;%일
+% plottime_hour = 12;%시
+% 
+% %%
+% for i=1:N_weather
+%     if T_basic(i, 1) == plottime_month
+%         if T_basic(i, 2) == plottime_day
+%             if T_basic(i, 3) == plottime_hour
+%                 D3 = i;
+%             end
+%         end
+%     end
+% end
+% 
+% %%
+% % display startdate & enddate
+% startdate = T_basic(D1, 1:2)
+% enddate = T_basic(D2, 1:2)
+% plotdate = T_basic(D3, 1:2)
+% 
+% % expressing date by decimal numbers
+% DD1 = T_basic(D1, 1) + T_basic(D1, 2) * 1/100; 
+% DD2 = T_basic(D2, 1) + T_basic(D2, 2) * 1/100;
+% 
+% %% subplot(2, 2, 1)
+% subplot(2, 2, 1)
+% 
+% x = N_node_g2;
+% n = D2 - D1 + 1; y = linspace(DD1, DD2, n);
+% 
+% plot(y, T_basic(D1:D2, [3 + x + 16]), 'r'); %hold on;
+% 
+% subplot(2, 2, 2)
+% plot(y, T_airtube(D1:D2, [3 + x + 16]), 'b');
+% 
+% axis([DD1 DD2 -5 +35]);
+% xtickformat('%.2f');
+% % pbaspect([1 1 1])
+% title('temp');
+% xlabel('date'); ylabel('degC');
+% grid on
+% 
+% %%
+

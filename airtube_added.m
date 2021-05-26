@@ -721,14 +721,17 @@ for i = N_node_g + 1 : N_node_g + n_type_4
 end
 
 %%% 76번 바로 아래 노드(n_type_4 차례로)와 전도 추가
+
 for i = N_node_g + 1 : N_node_g + n_type_4
     for j = 1 : N_node_g
         if info_g(j, 11) == i
+            if info_g(j, 1) ~= 5
             x(1, 1) = i;
             x(2, 1) = j;
             Se_g = 2 * S_cond;
             for g=1:2; h=1:2;
                 S_ult(x(g,1),x(h,1)) = S_ult(x(g,1),x(h,1)) + Se_g(g,h);
+            end
             end
         end
     end

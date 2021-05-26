@@ -3,14 +3,14 @@ load('vent_and_infilt.mat')
 load('T_basic.mat')
 load('T_airtube.mat')
 
-T_compare = T_basic - T_airtube;
+T_compare = T_airtube - T_basic;
 
 
 
 %% 3D 플롯할 시간 정하기
-plottime_month = 8;%월
+plottime_month = 2;%월
 plottime_day = 1;%일
-plottime_hour = 12;%시
+plottime_hour = 1;%시
 
 %%
 for i=1:N_weather
@@ -45,9 +45,50 @@ max(T_compare(:, 4:end))
 axis([DD1 DD2 -1 +1]);
 xtickformat('%.2f');
 % pbaspect([1 1 1])
-title('temp');
+title('Airtube model - Basic model, temp');
 xlabel('date'); ylabel('degC');
 grid on
+
+%% subplot(2, 2, 2)
+subplot(2, 2, 2)
+tt = D3;
+
+TT_1 = zeros(tube_depth + 1, 5);
+T_an = zeros(9, 1);
+for i = 1 : 9
+    T_an(i, 1) = T_airtube(D3, 3 + airtube_numbers(i, 1));
+end
+
+imagesc(T_an')
+colorbar('southoutside')
+pbaspect([9 1 1])
+
+TT_1(2, :) = T_airtube(D3, 3 + 202);
+TT_1(3, :) = T_airtube(D3, 3 + 166);
+TT_1(4, :) = T_airtube(D3, 3 + 130);
+
+TT_1(2, 5) = T_an(1, 1);
+TT_1(3, 5) = T_an(2, 1);
+TT_1(4, 5) = T_an(3, 1);
+
+TT_1(4, 4) = T_an(4, 1);
+TT_1(4, 3) = T_an(5, 1);
+TT_1(4, 2) = T_an(6, 1);
+
+TT_1(4, 1) = T_an(7, 1);
+TT_1(3, 1) = T_an(8, 1);
+TT_1(2, 1) = T_an(9, 1);
+
+TT_1(1, :) = T_airtube(D3, 3 + N_node_g - 1);
+TT_1(1, 1) = T_airtube(D3, 3 + N_node_g);
+
+
+
+% imagesc(TT_1)
+% colorbar
+% pbaspect([5 3 1])
+% 
+
 
 %% subplot(2, 2, 3)
 subplot(2, 2, 3)

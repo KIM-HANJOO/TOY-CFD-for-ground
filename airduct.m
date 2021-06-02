@@ -1,7 +1,34 @@
-clc;
-clear all;
-load('set_up.mat')
-disp('loaded set_up.mat')
+
+%% start of the while loop
+length_num_now = 1;
+while length_done == 0
+    clc;
+    clear all;
+    load('length_all_effi.mat')
+    delete('length_all.mat')
+    load('set_up_for_airduct.mat')
+   
+    % load length_all, save length_all
+    % rerun the issue
+    duct_length = length_all(1, length_num_now + 1);
+    X = ['now starting', num2str(length_num_now), 'th', 'and length is',num2str(duct_length), '.ends at', num2str(num_length)];
+    disp(X)
+    disp('loaded set_up_for_airduct.mat')
+    % use 'duct_length' as the length of the duct
+    % use 'length_num_now' as the trial number
+    
+%% %%%%%% main code starts %%%%%% 
+%% 기본 input, 3D ground
+
+
+%% 주의사항
+% M 매트릭스 만들고 boundary conditions 해당하는 행 지워야 하는지?
+% 파일 보낼 때 inputs.mat 파일과 ground_3D.mat 파일 같이 보내기. 안그러면 지울 수 없다고 뜸.
+% S 매트릭스 만들 때, 발밑 노드와 cond 계수 얼마로 해야 할지
+
+S_cond = 1/4 * soil_conductivity * meshsize * [1, -1; -1, 1];
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% basic model %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 사용할 행렬들의 기본 세팅
 wich_node = 17;
 M=zeros(N_node,N_node);
@@ -137,7 +164,62 @@ end
 T00=T_preheating2(end,:);
 
 disp('warmed up !')
-%% main ODE
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% nodes info
+info_duct = zeros(N_node + duct_length * 2, N_node + duct_length * 2, 1);
+
+%% making of M, S, f_ult
+M_ult = zeros(N_node + duct_length * 2, N_node + duct_length * 2);
+S_ult = zeros(N_node + duct_length * 2, N_node + duct_length * 2);
+f_ult = zeros(N_node + duct_length * 2, 1);
+
+M_unit = zeros(5, 5);
+S_unit = zeros(5, 5);
+f_unit = zeros(5, 5);
+
+%% making of M_unit
+M_unit(1, 1) = m_airduct;
+for i = 2 : 5
+    M_unit(i, i) = m_soil;
+end
+
+%% making of S_unit
+
+duct_conv = 1;
+duc_wall_cond = 1;
+duct_vent_rate = 1;
+
+for i = 2 : 5
+    x(1, 1) = 1;
+    x(2, 1) = i;
+    s_e = duct_conv * [1, -1; -1, 1];
+    for j = 1 : 2, k = 1 : 2;
+        S_unit(x(j, 1), x(k, 1)) = S_unit(x(j, 1), x(k, 1)) + s_e(x(j, 1), x(k, 1));
+    end
+end
+
+%% f_unit is zeros
+%% making of M, S, f_ult
+M_ult(1 : N_node, 1 : N_node) = M;
+S_ult(1 : N_node, 1 : N_node) = S;
+f_ult(1 : N_node, 1) = f;
+N_node_all = N_node + (duct_length * 5);
+%% M_ult
+for i = 1 : length_num_now
+    start_numbers = zeros(1, duct_length);
+    start_numbers(1, i) = (N_node + 1) + (i - 1) * 5;
+    x = start_numbers;
+    M_ult(x : x + 4, x : x + 4) = M_unit;
+    S_ult(x : x + 4, x : x + 4) = S_unit;
+    f_ult(x : x + 4, x : x + 4) = f_unit;
+    T_0 = T0_all * zeros(1, N_node_all));
+    T_0(1, 1 : N_node) = T00;
+    T_all = zeros(N_weather, 3 + N_node_all);
+    T_all(:, 1 : 3) = weather(:, 1 : 3);
+end
+
+%% solve ode23t
 tspan=[0:1];
 for i=1:N_weather
     f(16,1)=weather(i,4);
@@ -164,10 +246,10 @@ for i=1:N_weather
     f(ceilingwind,1)=ASHGC(10,1)*weather(i,9);
     end
     
-    [t,T]=unsteady(tspan,T00,M,S,f);
+    [t,T]=unsteady(tspan,T_0, M_ult, S_ult, f_ult);
     
-    T00=T(end,:);
-    T_all(i,4:3+N_node)=T00;
+    T_0 = T(end,:);
+    T_all(i, 4 : 3 + N_node_all)=T00;
     
     if i == round(N_weather * 1/10)
         disp('ODE is 10% solved ...')
@@ -211,30 +293,24 @@ for i=1:N_weather
     
     end
 
-%% 날짜 표기 및 플롯
-% 
-% ii=3+which_node;
+%% result
+load('basic_T_all.mat')
+disp('result comparing')
+T_diff = basic_T_all(:, 17 + 3) - T_all(2 : end, 17 + 3);
+T_diff_all(:, length_num_now) = T_all(:, 17 + 3);
 
-% display startdate & enddate
-startdate = T_all(D1,1:2)
-enddate = T_all(D2,1:2)
 
-% expressing date by decimal numbers
-DD1 = T_all(D1, 1) + T_all(D1, 2) * 1/100; 
-DD2 = T_all(D2, 1) + T_all(D2, 2) * 1/100;
+%% defining the effeciency
 
-% plotting
-n = D2 - D1 + 1; y = linspace(DD1, DD2, n);
-plot(y,T_all(D1:D2, [16+3, 1+3, 2+3, 17+3]));
-xtickformat('%.2f');
-legend('Tout', 'Wall 1', 'Wall 2', 'Tin');
-Maxx=max(T_all(D1:D2,[16+3, 1+3, 2+3, 17+3]));
-minn=min(T_all(D1:D2,[16+3, 1+3, 2+3, 17+3]));
-axis([DD1 DD2 min(minn) max(Maxx)]);
+cost_airduct = (digging_per_unit + unit_cost) * duct_length;
+effi = zeros(1, num_length);
+effi(1,length_num_now) = 1 / cost_airduct * sum(T_diff(D1 : D2, 1));
 
-% title('temp diff through days');
-xlabel('date'); ylabel('degC');
-grid on
-basic_T_all = T_all;
-save('basic_T_all.mat', 'basic_T_all')
-save result1basic.mat
+%% end of the while loop
+    %%%%%
+    save('length_all_effi.mat', 'length_all', 'effi')
+    length_num_now = length_num_now + 1;
+    if length_num_now > num_length
+        length_done = 1;
+    end
+end

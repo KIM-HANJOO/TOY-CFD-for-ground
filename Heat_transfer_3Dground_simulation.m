@@ -152,7 +152,7 @@ for i = 1 : N_node_g
                 for j = 0 : round(width2 / meshsize) ; k = 0 : round(width1 / (meshsize));
                      l1 = mesh / 2 - round(width2 / meshsize) + 1 + j;
                      l2 = mesh / 2 - round(width1 / meshsize) + k;
-                     l3 = l1 + l2 * 6 + 5 * 36 + 1;
+                     l3 = l1 + l2 * mesh + (mesh - 1) * mesh + 1;
                      info_g(l3, 1) = 2;                  
                 end
             end
@@ -652,18 +652,19 @@ S_ult(x + 16, x + 16) = 1;
 disp('M, S, f matrix is done ...')
 %% ODE
 
-load("warmup_temp.mat")
-disp('loaded 3D ground warmup data')
+% load("warmup_temp.mat")
+% disp('loaded 3D ground warmup data')
 %% warmup 2
 clearvars x;
 clearvars d;
 x = N_node_g2;
 tspan = [0 : 1];
 
-T000 = zeros(1, N_node_g2 + N_node);
-for i = 1 : N_node_g2
-    T000(1, i) = mean(T_all_warmup(:, i + 3));
-end
+% T000 = zeros(1, N_node_g2 + N_node);
+% for i = 1 : N_node_g2
+%     T000(1, i) = mean(T_all_warmup(:, i + 3));
+% end
+T000 = 12 * ones(1, N_node_g2 + N_node);
 
 T000(1, N_node_g2 + 1 : N_node_g2 + N_node) = T00;
 
@@ -694,33 +695,55 @@ T_all(:, 1:3) = weather(:, 1:3);
 
 %% main ODE
 disp('solving ODE')
+load('T_ground3.mat')
+
 
 for i  = 1 : N_weather
     %%% f update
     f_ult(x + 16, 1) = weather(i, 4);
+    
     f_ult(x + south, 1) = ASHGC(1,1) * weather(i, 5);
+    
     f_ult(x + east, 1) = ASHGC(2, 1) * weather(i, 6);
+    
     f_ult(x + north, 1) = ASHGC(3, 1) * weather(i, 7);
+    
     f_ult(x + west, 1) = ASHGC(4, 1) * weather(i, 8);
+    
     f_ult(x + ceiling, 1) = ASHGC(5, 1) * weather(i, 9);
+    
     if southwind ~= 0
     f_ult(x + southwind, 1) = ASHGC(6, 1) * weather(i, 5);
     end
+    
     if eastwind ~= 0
     f_ult(x + eastwind, 1) = ASHGC(7, 1) * weather(i, 6);
     end
+    
     if northwind ~= 0
     f_ult(x + northwind, 1) = ASHGC(8, 1) * weather(i, 7);
     end
+    
     if westwind ~= 0
     f_ult(x + westwind, 1) = ASHGC(9, 1) * weather(i, 8);
     end
+    
     if ceilingwind ~= 0
     f_ult(x + ceilingwind, 1) = ASHGC(10, 1) * weather(i, 9);
     end
     
     for j = N_node_g + 1 : N_node_g + n_type_4
         f_ult(j, 1) = soil_solar_absorptance * meshsize * meshsize * weather(i, 9);
+    end
+    
+    for j = 1 : N_node_g
+        if info_g(j, 1) ~= 0
+            if info_g(j, 1) ~= 2
+                if info_g(j, 1) ~= 4
+                    f_ult(j, 1) = T_ground_depth(i, info_g(j, 4) + 4);
+                end
+            end
+        end
     end
     
     [t,T]=unsteady(tspan, T000, M_ult, S_ult, f_ult);
@@ -777,8 +800,6 @@ clearvars l1;
 clearvars l2;
 clearvars l3;
 clearvars a;
-
-
 
 save result1.mat
 

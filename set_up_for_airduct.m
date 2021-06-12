@@ -21,31 +21,22 @@ disp('room_input(2).xlsx loaded')
 
 %% defining air duct
 
-duct_length = 10;
+num_duct = 5;
+length_duct = [10, 12, 14, 16, 18];
+
+digging_cost = 1;
+ductpart_cost = 1;
 
 m_airduct = 1.29*1000/3600*2*2*2;
-S_conv_airduct = 2.5 * 2 * [1, -1 ; -1, 1];
+S_conv_duct = 2.5 * 2 * [1, -1 ; -1, 1];
 S_infiltration = 22.5 * 0.36 * [1, -1; -1, 1];
 
-digging_per_unit = 1;
-unit_cost = 1;
-
-
-
 %% all_saved_matrix
-num_length = 5;
-length_all = zeros(max(size(weather(:, 1))) + 1, num_length);
-duct_lengths = zeros(1, num_length);
-length_starts_from = 10;
+duct_all = zeros(max(size(weather(:, 1))) + 1, num_duct);
+duct_all(1, :) = length_duct;
+%T_diff_all = zeros(max(size(T_diff(:, 1))), max(size(length_all(1, :))));
 
-x = length_starts_from;
-for i = 1 : num_length
-    duct_lengths(1, i) = x;
-    x = x + 1;
-end
-length_all(1, :) = duct_lengths;
-T_diff_all = zeros(max(size(T_diff(:, 1))), max(size(length_all(1, :))));
-save('length_all.mat', 'length_all')
+save('duct_all.mat', 'duct_all')
 T_all_saved
 
 %% 시뮬레이션 할 기간 정하기
@@ -83,7 +74,7 @@ soil_h_conv = 2.5; % W/m²K
 soil_density = 1; %1600; %kg/m^3
 U = 1;
 m_soil = soil_density * soil_specific_heat * 1 * 1; % * [1, 0; 0, 1];
-
+S_cond = 1/4 * soil_conductivity * meshsize * [1, -1; -1, 1];
 %% 기본 가정 (duct)
 duct_conv = 1;
 duc_wall_cond = 1;

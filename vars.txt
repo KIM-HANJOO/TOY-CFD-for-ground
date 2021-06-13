@@ -1,0 +1,9 @@
+num_duct_now = 지금 순서
+length_duct_now = 지금 길이
+
+num_duct = 총 갯수
+length_duct = 총 길이 모음
+
+length_duct_now = 지금 길이
+length_duct_end = 끝 길이
+num_duct = 끝 갯수

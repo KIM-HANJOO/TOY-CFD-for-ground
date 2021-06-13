@@ -235,5 +235,7 @@ axis([DD1 DD2 min(minn) max(Maxx)]);
 % title('temp diff through days');
 xlabel('date'); ylabel('degC');
 grid on
-T_all_basic = T_all;
+basic_T_all = T_all;
 save result1basic.mat
+save('basic_T_all.mat', 'basic_T_all')
+

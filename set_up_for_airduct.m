@@ -27,17 +27,15 @@ length_duct = [10, 12, 14, 16, 18];
 digging_cost = 1;
 ductpart_cost = 1;
 
-m_airduct = 1.29*1000/3600*2*2*2;
 S_conv_duct = 2.5 * 2 * [1, -1 ; -1, 1];
 S_infiltration = 22.5 * 0.36 * [1, -1; -1, 1];
 
 %% all_saved_matrix
-duct_all = zeros(max(size(weather(:, 1))) + 1, num_duct);
-duct_all(1, :) = length_duct;
+duct_all = zeros(max(size(weather(:, 1))) * num_duct, 3 + 18 + 2 * length_duct(1, end));
 %T_diff_all = zeros(max(size(T_diff(:, 1))), max(size(length_all(1, :))));
 
 save('duct_all.mat', 'duct_all')
-T_all_saved
+disp('T_all_saved')
 
 %% 시뮬레이션 할 기간 정하기
 
@@ -74,11 +72,16 @@ soil_h_conv = 2.5; % W/m²K
 soil_density = 1; %1600; %kg/m^3
 U = 1;
 m_soil = soil_density * soil_specific_heat * 1 * 1; % * [1, 0; 0, 1];
-S_cond = 1/4 * soil_conductivity * meshsize * [1, -1; -1, 1];
+V_duct = 1;
+m_air = 1.29 * 1000/3600 * V_duct;
+m_duct = 1;
+S_cond = 1/4 * soil_conductivity * [1, -1; -1, 1];
+
+
 %% 기본 가정 (duct)
-duct_conv = 1;
-duc_cond = 1;
-duct_vent_rate = 1;
+duct_conv = 0.1;
+duct_cond = 0.1;
+duct_vent = 0.1;
 
 %% room info
 

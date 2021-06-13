@@ -1,12 +1,11 @@
 
 num_duct_now = 1;
-% while num_duct_now < num_duct + 1
-clc; clear all;
+length_done = 0;
+while length_done == 0
 
 load('set_up_for_airduct.mat')
-delete('set_up_for_airduct.mat')
 load('duct_all.mat')
-delete('duct_all.mat')
+
 
 length_duct_now = duct_all(1, num_duct_now);
 length_duct_end = duct_all(1, end);
@@ -58,7 +57,7 @@ end
 M_indoorair=zeros(N_node,N_node);
 M_indoorair(17,17)=1.29*1000/3600*3*3*5;
 M=M+M_indoorair;
-f=f+BCT';
+f = f + BCT';
 
 for i=1:N_node
     if BCT(1,i)==0
@@ -164,12 +163,15 @@ M_ult = zeros(N_node_all, N_node_all);
 S_ult = zeros(N_node_all, N_node_all);
 f_ult = zeros(N_node_all, 1);
 
+f(15, 1) = 1;
+f(18, 1) = 12;
+
 M_unit = zeros(2, 2);
 S_unit = zeros(2, 2);
-f_unit = zeros(2, 2);
+f_unit = zeros(2, 1);
 
 %% making of M_unit
-M_unit(1, 1) = m_airduct;
+M_unit(1, 1) = m_air;
 M_unit(2, 2) = m_soil;
 
 %% making of S_unit
@@ -183,7 +185,7 @@ x(2, 1) = 2;
 s_e = duct_conv * [1, -1; -1, 1];
 
 for j = 1 : 2, k = 1 : 2;
-    S_unit(x(j, 1), x(k, 1)) = S_unit(x(j, 1), x(k, 1)) + s_e(x(j, 1), x(k, 1));
+    S_unit(x(j, 1), x(k, 1)) = S_unit(x(j, 1), x(k, 1)) + s_e(j, k);
 end
 
 
@@ -193,37 +195,65 @@ M_ult(1 : N_node, 1 : N_node) = M;
 S_ult(1 : N_node, 1 : N_node) = S;
 f_ult(1 : N_node, 1) = f;
 
-startnums = zeros(length_num_now, 1);
-for i = 1 : length_num_now
+startnums = zeros(length_duct_now, 1);
+for i = 1 : length_duct_now
     startnums(i, 1) = N_node + 2 * i - 1;
 end
-for i = 1 : length_num_now
+for i = 1 : length_duct_now
     M_ult(i : i + 1, i : i + 1) = M_unit;
     S_ult(i : i + 1, i : i + 1) = S_unit;
     f_ult(i : i + 1, 1) = f_unit;
 end
 
-for i = 1: length_num_now
+for i = 1: length_duct_now
     x(1, 1) = 18; % ground node
     x(2, 1) = startnums(i, 1) + 1;
     
-    s_e = duct_conv * [1, -1; -1, 1];
+    s_e = duct_cond * [1, -1; -1, 1];
     for j = 1 : 2, k = 1 : 2;
-        S_ult(x(j, 1), x(k, 1)) = S_ult(x(j, 1), x(k, 1)) + s_e(x(j, 1), x(k, 1));
+        S_ult(x(j, 1), x(k, 1)) = S_ult(x(j, 1), x(k, 1)) + s_e(j, k);
     end 
 end
+%%% add ventilation for duct airs
+for i = 1: length_duct_now - 1
+    x(1, 1) = startnums(i, 1); % ground node
+    x(2, 1) = startnums(i + 1, 1);
     
+    s_e = duct_vent * [1, -1; -1, 1];
+    for j = 1 : 2, k = 1 : 2;
+        S_ult(x(j, 1), x(k, 1)) = S_ult(x(j, 1), x(k, 1)) + s_e(j, k);
+    end 
+end
+% for inlet
+x(1, 1) = 16;
+x(2, 1) = startnums(1, 1);
+s_e = duct_vent_rate * [1, -1; -1, 1];
+    for j = 1 : 2, k = 1 : 2;
+        S_ult(x(j, 1), x(k, 1)) = S_ult(x(j, 1), x(k, 1)) + s_e(j, k);
+    end 
+
+% for outlet
+x(1, 1) = startnums(end, 1);
+x(2, 1) = 17;
+
+s_e = duct_vent_rate * [1, -1; -1, 1];
+    for j = 1 : 2, k = 1 : 2;
+        S_ult(x(j, 1), x(k, 1)) = S_ult(x(j, 1), x(k, 1)) + s_e(j, k);
+    end 
+
     
-    T_0 = T0_all * zeros(1, N_node_all);
-    T_0(1, 1 : N_node) = T00;
-    T_all = zeros(N_weather, 3 + N_node_all);
-    T_all(:, 1 : 3) = weather(:, 1 : 3);
+T_0 = T0_all * zeros(1, N_node_all);
+T_0(1, 15) = 1;
+T_0(1, 18) = 12;
+T_0(1, 1 : N_node) = T00;
+T_all = zeros(N_weather, 3 + N_node_all);
+T_all(:, 1 : 3) = weather(:, 1 : 3);
 
 
 %% solve ode23t
-tspan=[0:1];
-for i=1:N_weather
-    f(16,1)=weather(i,4);
+tspan = [0 : 1];
+for i = 1 : N_weather
+    f(16, 1) = weather(i, 4);
     
     %%% update solarradiation
     f(south,1)=ASHGC(1,1)*weather(i,5);
@@ -250,7 +280,7 @@ for i=1:N_weather
     [t,T]=unsteady(tspan,T_0, M_ult, S_ult, f_ult);
     
     T_0 = T(end,:);
-    T_all(i, 4 : 3 + N_node_all)=T00;
+    T_all(i, 4 : 3 + N_node_all) = T_0;
     
     if i == round(N_weather * 1/10)
         disp('ODE is 10% solved ...')
@@ -292,34 +322,26 @@ for i=1:N_weather
         disp('ODE is 100% solved ...')
     end
     
-    end
-
-%% result
-load('basic_T_all.mat')
-disp('result comparing')
-T_diff = basic_T_all(:, 17 + 3) - T_all(2 : end, 17 + 3);
-T_diff_all(:, length_num_now) = T_all(:, 17 + 3);
-
-
-%% defining the effeciency
-
-cost_airduct = (digging_per_unit + unit_cost) * duct_length;
-effi = zeros(1, num_length);
-effi(1,length_num_now) = 1 / cost_airduct * sum(T_diff(D1 : D2, 1));
-
-%% end of the while loop
-    %%%%%
-    save('length_all_effi.mat', 'length_all', 'effi')
-    length_num_now = length_num_now + 1;
-    if length_num_now > num_length
-        length_done = 1;
-    end
 end
 
-%%%%
 
+%% end of the while loop
+%%%%%
+
+%%%%
+load('duct_all.mat')
 duct_all(2 : end, num_duct_now) = T_all(:, 3 + 17);
 num_duct_now = num_duct_now + 1;
 save('duct_all.mat', 'duct_all')
-% end
+disp('result saved')
+
+
+num_duct_now = num_duct_now + 1;
+if num_duct_now > num_duct
+    length_done = 1;
+end
+
+
+
+end
     

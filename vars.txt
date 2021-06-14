@@ -26,7 +26,14 @@ pvc? density, specific heat, conduction rate
 ventilation rate
 
 
+공기
+밀도, 비열, 이상적 환기량, 대류열계수
 
+토양
+밀도, 비열, 열전도계수
+
+PVC
+밀도, 비열, 열전도계수
 
 
 

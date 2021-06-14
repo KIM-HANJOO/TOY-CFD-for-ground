@@ -22,13 +22,62 @@ disp('room_input(2).xlsx loaded')
 %% defining air duct
 
 num_duct = 5;
-length_duct = [10, 12, 14, 16, 18];
+length_duct = [40, 12, 14, 16, 18];
 
+%%%
 digging_cost = 1;
 ductpart_cost = 1;
 
-S_conv_duct = 2.5 * 2 * [1, -1 ; -1, 1];
-S_infiltration = 22.5 * 0.36 * [1, -1; -1, 1];
+%% geomatrical properties
+duct_rad = 0.5;
+duct_volume = duct_rad * duct_rad * 3.141592 * 1;
+duct_area = duct_rad * 2 * 3.141592;
+duct_depth = 0.05;
+room_volume = 3 * 3 * 5;
+
+%% heat properties
+duct_density = 1.38 * 1000;%kg/m3 from g/cm3, x1000
+duct_specificheat = 0.840/3.6; % Wh/kg degC
+duct_k_cond = 0.19;%W/(m K)
+
+air_h_conv = 2.5; %W / m2 K
+ACPH = 3;%/h
+air_vent_q = ACPH * room_volume; %m3/h
+% air_vent_q = 1.699 * 20; %m3/h
+% air_vent_q = ACPH * duct_volume; %m3/h
+air_density = 1.225;%density in kg/m3
+air_specificheat = 1.005/3.6;%Wh/kg degC (Wh to kg, 1 : 3.6)
+
+soil_k_cond = 0.44; % W/m K
+soil_solar_absorptance = 0.6;
+soil_h_rad = 5.5; % W/m²K
+soil_h_conv = 2.5; % W/m²K
+soil_density = 1600;%kg/m^3
+soil_specific_heat = 0.800/3.6; %Wh/kg*degC
+
+%% heat transfer
+
+duct_conv = air_h_conv * duct_area * [1, -1; -1, 1];
+duct_cond_duct = duct_k_cond * duct_area * 1/0.05 * [1, -1; -1, 1];
+duct_cond_soil = soil_k_cond * duct_area * 1/1 * [1, -1; -1, 1];
+duct_vent = air_vent_q * air_density * air_specificheat * [1, -1; -1, 1]; 
+%duct_vent = 22.5 * 0.36 * [1, -1; -1, 1];
+% duct_vent = 100 * 3.6 * [1, -1; -1, 1];
+
+S_cond = 1/4 * soil_k_cond * [1, -1; -1, 1];
+
+%Thermal mass =  density * specific heat * volume
+m_duct = duct_density * duct_specificheat * duct_volume;
+m_air = air_density * air_specificheat * duct_volume;
+m_soil = soil_density * soil_specific_heat; 
+% S_infiltration = 22.5 * 0.36 * [1, -1; -1, 1];
+
+
+% U = 1;
+
+
+
+
 
 %% all_saved_matrix
 duct_all = zeros(max(size(weather(:, 1))) * num_duct, 3 + 18 + 2 * length_duct(1, end));
@@ -63,25 +112,8 @@ const_temt = 12;%degC
 %% 깊이에 따른 온도 변화
 T_depth = xlsread('Tdepth.xlsx');
 
-%% 기본 가정 (soil)
-soil_conductivity = 0.44;
-soil_specific_heat = 1175.56; %733; % J/kg*degC
-soil_solar_absorptance = 0.6;
-soil_h_rad = 5.5; % W/m²K
-soil_h_conv = 2.5; % W/m²K
-soil_density = 1; %1600; %kg/m^3
-U = 1;
-m_soil = soil_density * soil_specific_heat * 1 * 1; % * [1, 0; 0, 1];
-V_duct = 1;
-m_air = 1.29 * 1000/3600 * V_duct;
-m_duct = 1;
-S_cond = 1/4 * soil_conductivity * [1, -1; -1, 1];
 
 
-%% 기본 가정 (duct)
-duct_conv = 0.1;
-duct_cond = 0.1;
-duct_vent = 0.1;
 
 %% room info
 

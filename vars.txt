@@ -7,3 +7,70 @@ length_duct = 총 길이 모음
 length_duct_now = 지금 길이
 length_duct_end = 끝 길이
 num_duct = 끝 갯수
+
+
+conduction
+k * A * 1/x * (T1-T2)
+
+convection
+h_conv * A * (T1 - T2)
+
+ventilation
+q_v * p(lau) *C_p * dT
+
+
+soil density, specific heat, conduction rate
+
+pvc? density, specific heat, conduction rate
+
+ventilation rate
+
+
+
+
+
+
+	<< soil >>
+***density 
+light siliceous soil = 1500
+density of dry gravel soil = 1600
+soil gravel wet = 1800
+soil clay dry = 2000
+soil clay wet = 2300
+mixed soil and pebbles = 1800 - 2200
+vegetable soil = 1700
+
+***specific heat
+specific heat of dry soil = 800 J/kg degC
+specific heat of wet soil = 1480 J/kg degC
+
+***k_cond
+thermal conductivity of soil = 0.45 - 1.10 W/m C
+overall heat transfer coefficient = 1.00 - 2.45 W/m2 C
+
+density of soil : http://www.themeter.net/pesi-muc_e.htm
+specific heat infos : https://www.engineeringtoolbox.com/specific-heat-capacity-d_391.html
+thermal conductivity of soil : https://www.researchgate.net/figure/The-influence-of-soil-thermal-conductivity-to-pipeline-operation_tbl1_267599373
+
+
+	<< air >>
+density = 1.225 kg/m3
+convective heat transfer coefficient of free convection air = 2.5 - 25 W/(m2 K)
+of forced air = 10 - 500
+specific heat = 1.005 kJ/kg degC
+suggested outdoor air ventilation rate (ACPH(ACH) air changes per hour ) = 
+
+h_c of air : https://www.sciencedirect.com/topics/engineering/convection-heat-transfer-coefficient
+density of air : https://www.macinstruments.com/blog/what-is-the-density-of-air-at-stp/
+specific heat of air : https://www.engineeringtoolbox.com/specific-heat-capacity-d_391.html
+recommended air changes per hour for home : https://smartairfilters.com/en/blog/ashrae-per-hour-office-residential-school-virus/
+
+	<<PVC>>
+density 1.38 g/cm3
+thermal conductivity = 0.19 W/(m K)
+specific heat = 840 - 1170 J/kg degC
+
+
+density  of PVC : https://www.bpf.co.uk/plastipedia/polymers/pvc.aspx
+thermal conductivity of PVC : https://www.engineeringtoolbox.com/thermal-conductivity-plastics-d_1786.html
+specific heat of PVC : https://www.engineeringtoolbox.com/specific-heat-capacity-d_391.html

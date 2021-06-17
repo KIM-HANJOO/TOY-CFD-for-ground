@@ -24,7 +24,8 @@ x=room_input;
              Se=U*A*[1,-1;-1,1];
              
          elseif x(i,8)==2
-%              Se=U*CAP*[1,-1;-1,1];
+              Se=U*CAP*[1,-1;-1,1];
+              S_infilteration = Se;
          end
      
          for g=1:2; h=1:2;
@@ -235,7 +236,7 @@ axis([DD1 DD2 min(minn) max(Maxx)]);
 % title('temp diff through days');
 xlabel('date'); ylabel('degC');
 grid on
-basic_T_all_novent = T_all;
+basic_T_all = T_all;
 save result1basic.mat
-save('basic_T_all_novent.mat', 'basic_T_all_novent')
+save('basic_T_all.mat', 'basic_T_all')
 

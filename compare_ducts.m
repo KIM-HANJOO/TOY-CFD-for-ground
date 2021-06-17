@@ -66,10 +66,16 @@ subplot(1, 3, 1)
 % plot(1 : N_weather, basic_T_all_novent(:, 3 + 17), 'r');hold on;
 % plot(1 : N_weather, basic_T_all(:, 17 + 3), 'b'); hold on;
 % plot(1 : N_weather, T_duct1(:, 17 + 3), 'g');
-
+%%
 plot(1 : N_weather, basic_T_all_novent(:, 3 + 17), 'r', 1 : N_weather, basic_T_all(:, 17 + 3), 'b', 1 : N_weather, T_duct1(:, 17 + 3), 'g');
-legend({'basic without vent', 'basic with vent', 'AEHE'},'Location','northwest')
+legend({'basic without infilt', 'basic with infilt', 'EAHE'},'Location','northwest')
 axis([1 N_weather -5 +30]);
+
+
+% plot( 1 : N_weather, basic_T_all(:, 16 + 3), 'g', 1 : N_weather, basic_T_all_novent(:, 3 + 17), 'r', 1 : N_weather, basic_T_all(:, 17 + 3), 'b');
+% legend({'Tout', 'basic without vent', 'basic with vent'},'Location','northwest')
+% axis([1 N_weather -5 +30]);
+%%
 % legend('AEHE - basic');
 
 subplot(1, 3, 2)

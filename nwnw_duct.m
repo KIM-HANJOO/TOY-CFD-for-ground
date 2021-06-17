@@ -37,7 +37,7 @@ x = room_input;
              Se = U * A * [1, -1; -1, 1];
              
          elseif x(i, 8) == 2
-%              Se= U * CAP * [1, -1; -1, 1];
+             Se= U * CAP * [1, -1; -1, 1];
          end
      
          for g = 1 : 2; h = 1 : 2;

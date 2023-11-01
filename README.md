@@ -1,5 +1,6 @@
 # TOY-CFD for ground node
 
+written in 2021.
 
 simple **6-6-6 size 3D ground Heat-transfer model**
 
